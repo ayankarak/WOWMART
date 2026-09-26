@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: sans-serif;
 }
 
 body {
@@ -13,6 +13,31 @@ body {
 
 .section {
     padding: 50px 0; 
+}
+
+/* Section Titles */
+.section-title {
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    font-size: 28px;
+    color: #2596be;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+.section-title-center {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.discover-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: #888;
 }
 
 /* Full Width Container */
@@ -285,6 +310,7 @@ body {
     color: #666;
 }
 
+
 /* Promo Card  */
 .promo-card {
     background: linear-gradient(to bottom, #fdfdfd, #f0f4f8);
@@ -482,4 +508,272 @@ footer {
     padding-top: 20px;
     font-size: 13px;
     color: #aaa;
+}
+
+/* Latest Launches */
+.launches-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.launch-item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.launch-item img {
+    height: 110px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.launch-item h4 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.launch-item .specs {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 4px;
+}
+
+.launch-item .launch-price {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Trending Offers */
+.trending-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+.trending-item {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.trending-item img {
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.trending-item h4 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.trending-item .offer-text {
+    font-size: 12px;
+    color: #0056b3;
+    font-weight: bold;
+}
+
+/* Discover Latest Blog */
+.discover-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.discover-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.discover-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.discover-img-wrap {
+    position: relative;
+    line-height: 0;
+}
+
+.discover-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+}
+
+.discover-divider {
+    display: block;
+    height: 26px;
+    width: 100%;
+    background: #5fa4ed;
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    margin-top: -1px;
+}
+
+.discover-body {
+    padding: 6px 18px 18px;
+}
+
+.discover-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    color: #2596be;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+
+.discover-card h3 {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.discover-card p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.read-more {
+    font-size: 13px;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* Weekly Newsletter */
+.newsletter-section {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 30px 0;
+}
+
+.newsletter-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.newsletter-section h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.newsletter-section p {
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+.newsletter-form {
+    display: flex;
+    width: 450px;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-size: 14px;
+}
+
+.newsletter-form button {
+    background-color: #003366;
+    color: #fff;
+    border: none;
+    padding: 0 25px;
+    font-weight: bold;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.newsletter-form button:hover {
+    background-color: #002244;
+}
+
+@media (max-width: 1024px) {
+    .deals-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .launches-grid, .trending-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-bar-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .top-right {
+        margin-top: 5px;
+    }
+    .top-right a {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+    
+    .header-flex {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-bar {
+        margin: 0;
+        max-width: 100%;
+    }
+    .cart-action {
+        text-align: right;
+    }
+
+    .deals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    .launches-grid, .trending-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .discover-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-flex {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .deals-grid {
+        grid-template-columns: 1fr;
+    }
+    .launches-grid, .trending-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-flex {
+        grid-template-columns: 1fr;
+    }
+    .hero-content h1 {
+        font-size: 24px;
+    }
 }
