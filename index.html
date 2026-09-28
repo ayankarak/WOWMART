@@ -45,9 +45,32 @@
         </div>
     </header>
 
+        <!-- Mobile Header Actions (Only visible in mobile view) -->
+        <div class="mobile-header-actions">
+            <a href="#categories" class="mobile-action-item">
+                <i class="fa fa-th-large"></i>
+                <span>Categories</span>
+            </a>
+            <a href="#search" class="mobile-action-item">
+                <i class="fa fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="#account" class="mobile-action-item">
+                <i class="fa fa-user"></i>
+                <span>Account</span>
+            </a>
+            <a href="#cart" class="mobile-action-item">
+                <i class="fa fa-shopping-cart"></i>
+                <span>Cart</span>
+            </a>
+        </div>
+
     <!-- Navigation Bar -->
     <nav class="nav-bar">
-        <div class="container nav-flex">
+        <button class="hamburger-btn" id="hamburgerToggle" aria-label="Toggle navigation">
+            &#9776;
+        </button>
+        <div class="container nav-flex" id="navMenu">
             <a href="#" ><i class="fa-solid fa-person-dress"></i>Women</a>
             <a href="#"><i class="fa-solid fa-shirt"></i>Men</a>
             <a href="#"><i class="fa-solid fa-baby-carriage"></i>Kids</a>
@@ -82,31 +105,32 @@
         <div class="container">
             <h2 class="section-title">Deals of the Day</h2>
             <div class="deals-grid">
-                    <div class="deal-card">
-                        <img src="assets/grocery.png" >
-                        <h3>Grocery & Essentials</h3>
-                        <p class="discount">Upto 30% Off</p>
-                        <span class="action-link">Grab Now</span>
-                    </div>
-                    <div class="deal-card">
-                        <img src="assets/cream.png" >
-                        <h3>Best of Creams</h3>
-                        <p class="discount">Upto 30% Off</p>
-                        <span class="action-link">Lakme & More</span>
-                    </div>
-                    <div class="deal-card">
-                        <img src="assets/smart_device .png" >
-                        <h3>Smart Devices</h3>
-                        <p class="discount">Upto 30% Off</p>
-                        <span class="action-link">Best Deals</span>
-                    </div>
-                    <div class="deal-card">
-                        <img src="assets/laptop.png" >
-                        <h3>Best Selling Laptops</h3>
-                        <p class="discount">Upto 20% Off</p>
-                        <span class="action-link">HP, Dell & More</span>
-                    </div>
+                <a href="#" class="deal-card">
+                    <span class="deal-circle deal-orange"><img src="assets/grocery.png" alt="Grocery & Essentials"></span>
+                    <h3>Grocery &amp; Essentials</h3>
+                    <p class="discount">Upto 30% Off</p>
+                    <span class="action-link">Grab Now</span>
+                </a>
+                <a href="#" class="deal-card">
+                    <span class="deal-circle deal-pink"><img class="contain" src="assets/cream.png" alt="Best of Creams"></span>
+                    <h3>Best of Creams</h3>
+                    <p class="discount">Upto 30% Off</p>
+                    <span class="action-link">Lakme &amp; More</span>
+                </a>
+                <a href="#" class="deal-card">
+                    <span class="deal-circle deal-purple"><img class="contain" src="assets/smart_device .png" alt="Smart Devices"></span>
+                    <h3>Smart Devices</h3>
+                    <p class="discount">Upto 30% Off</p>
+                    <span class="action-link">Best Deals</span>
+                </a>
+                <a href="#" class="deal-card">
+                    <span class="deal-circle deal-blue"><img class="contain blend" src="assets/laptop.png" alt="Best Selling Laptops"></span>
+                    <h3>Best Selling Laptops</h3>
+                    <p class="discount">Upto 20% Off</p>
+                    <span class="action-link">HP, Dell &amp; More</span>
+                </a>
                 <div class="deal-card promo-card">
+                    <img class="promo-img" src="assets/promo.png" alt="Today's offer">
                     <span class="small-tag">TODAY'S OFFER</span>
                     <h4>Nooni Sprout Smoothing Toner</h4>
                     <p class="promo-off">30% OFF</p>
@@ -354,5 +378,21 @@
             <p>&copy; 2026 WOWMART. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+            const hamburgerToggle = document.getElementById('hamburgerToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            hamburgerToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                    
+            // Optional: Animate hamburger icon between ☰ and ✕
+                if (navMenu.classList.contains('active')) {
+                    hamburgerToggle.innerHTML = '&#10005;'; // Close cross icon
+                } else {
+                    hamburgerToggle.innerHTML = '&#9776;'; // Hamburger icon
+                }
+            });
+
+    </script>
 </body>
 </html>
