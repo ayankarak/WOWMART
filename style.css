@@ -2044,3 +2044,75 @@ footer {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
 }
+
+
+/* ================= MOBILE SEARCH PANEL ================= */
+
+/* Hidden on desktop */
+.mobile-search-panel {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .mobile-search-panel {
+        display: block;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        background-color: #005bb0;
+        transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+
+    .mobile-search-panel.open {
+        max-height: 80px;
+        opacity: 1;
+    }
+
+    .mobile-search-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 16px;
+        padding: 0 6px 0 14px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .mobile-search-icon {
+        color: #0071ce;
+        font-size: 15px;
+    }
+
+    .mobile-search-form input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 12px 0;
+        font-size: 15px;
+        color: #333;
+    }
+
+    .mobile-search-close {
+        background: none;
+        border: none;
+        color: #777;
+        font-size: 18px;
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-search-close:hover {
+        color: #0071ce;
+        background: #eef5fc;
+    }
+
+    /* Highlight the Search button while the panel is open */
+    .mobile-action-item.active {
+        background: rgba(255, 255, 255, 0.2);
+    }
+}
