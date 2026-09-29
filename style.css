@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    /*font-family: sans-serif;*/
 }
 
 body {
@@ -1683,8 +1683,10 @@ footer {
     }
     /* Header */
     .header-flex {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
         flex-wrap: wrap;
-        row-gap: 12px;
     }
     .logo { order: 1; }
     .cart-action { order: 2; }
@@ -1695,6 +1697,11 @@ footer {
 
     .hamburger-btn {
         display: block;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: #fafafb;
     }
     
     .nav-bar {
@@ -1954,5 +1961,86 @@ footer {
     .newsletter-form button {
         border-radius: 4px;
         padding: 12px;
+    }
+}
+
+/* ================= UPDATES ================= */
+
+/* Section headings: use the normal site font instead of Pacifico */
+.section-title {
+    font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+/* Hover effect for Latest Launches + Trending Offers cards */
+.launch-item,
+.trending-item {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.launch-item:hover,
+.trending-item:hover {
+    background: #0071ce;
+    border-color: #0071ce;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 113, 206, 0.35);
+}
+
+.launch-item h4,
+.launch-item .specs,
+.launch-item .launch-price,
+.trending-item h4,
+.trending-item .offer-text {
+    transition: color 0.2s ease;
+}
+
+.launch-item:hover h4,
+.launch-item:hover .launch-price,
+.trending-item:hover h4,
+.trending-item:hover .offer-text {
+    color: #fff;
+}
+
+.launch-item:hover .specs {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Best Selling Products cards: same lift + shadow */
+.product-card {
+    transition: all 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 113, 206, 0.25);
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    /* Hamburger button on the right side of the navbar */
+    .hamburger-btn {
+        display: block;
+        margin-left: auto;
+    }
+
+    /* Hide "My Cart" button in the header */
+    .cart-action {
+        display: none;
+    }
+
+    /* Hover / tap effect for mobile action buttons */
+    .mobile-action-item {
+        padding: 6px 14px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-action-item:hover,
+    .mobile-action-item:active {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     }
 }
