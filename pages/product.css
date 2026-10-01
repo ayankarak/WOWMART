@@ -30,7 +30,7 @@ body {
 .logo-text {
     font-size: 24px;
     font-weight: bold;
-    color: #db4444;
+    color: #0071ce;
 }
 
 /* Breadcrumb */
@@ -79,7 +79,7 @@ body {
     transition: 0.2s;
 }
 .thumb-img:hover, .thumb-img.active {
-    border-color: #db4444;
+    border-color: #0071ce;
 }
 .main-img-box {
     flex: 1;
@@ -122,7 +122,7 @@ body {
 .price {
     font-size: 24px;
     font-weight: bold;
-    color: #db4444;
+    color: #0071ce;
     margin-bottom: 15px;
 }
 .description {
@@ -170,9 +170,9 @@ body {
     font-weight: 500;
 }
 .size-btn:hover, .size-btn.active {
-    background: #db4444;
+    background: #0071ce;
     color: #fff;
-    border-color: #db4444;
+    border-color: #0071ce;
 }
 
 /* Quantity & Buy */
@@ -216,7 +216,7 @@ body {
     transition: 0.2s;
 }
 .buy-now-btn:hover {
-    background: #c53b3b;
+    background: #67bed9;
 }
 
 /* Delivery Info Box */

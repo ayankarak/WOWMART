@@ -72,3 +72,12 @@ const hamburgerToggle = document.getElementById('hamburgerToggle');
                     closeSearch();
                 }
             });
+
+            document.addEventListener('click', (e) => {
+    const item = e.target.closest('.launch-item, .trending-item');
+    if (!item) return;
+    const productId = item.dataset.id;
+    if (productId) {
+        window.location.href = `pages/product.html?id=${productId}`;
+    }
+});
