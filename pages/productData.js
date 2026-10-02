@@ -55,7 +55,7 @@ export const PRODUCTS = {
     description: 'Fast and smooth performance with an all-day battery and stunning display. Designed for everyday excellence.',
     images: ['../assets/phone1.png'],
     colors: [{ name: 'Black', hex: '#1c1c1c' }, { name: 'Cyan', hex: '#4bcffa' }],
-    sizes: ['8GB / 128GB']
+    specifications: ['8GB / 128GB']
   },
   'phone-2': {
     title: 'NOTHING 7S',
@@ -67,7 +67,7 @@ export const PRODUCTS = {
     description: 'Unique transparent design paired with a powerful processor and clean user interface.',
     images: ['../assets/phone2.png'],
     colors: [{ name: 'White', hex: '#f2f2f2' }, { name: 'Dark Grey', hex: '#333333' }],
-    sizes: ['8GB / 256GB']
+    specifications: ['8GB / 256GB']
   },
   'phone-3': {
     title: 'GOOGLE PIXEL 7',
@@ -79,7 +79,7 @@ export const PRODUCTS = {
     description: 'Advanced Google Tensor processing with professional-grade camera capabilities and smart features.',
     images: ['../assets/phone3.png'],
     colors: [{ name: 'Obsidian', hex: '#2b2b2b' }, { name: 'Snow', hex: '#f5f5f5' }],
-    sizes: ['12GB / 256GB']
+    specifications: ['12GB / 256GB']
   },
   'phone-4': {
     title: 'VIVO Y21 7',
@@ -91,7 +91,7 @@ export const PRODUCTS = {
     description: 'Sleek body with expansive storage and smooth multitasking capabilities for all your daily needs.',
     images: ['../assets/phone4.png'],
     colors: [{ name: 'Blue', hex: '#2c3e50' }, { name: 'Gold', hex: '#e67e22' }],
-    sizes: ['12GB / 256GB']
+    specifications: ['12GB / 256GB']
   },
   'phone-5': {
     title: 'SAMSUNG S21',
@@ -103,7 +103,7 @@ export const PRODUCTS = {
     description: 'Flagship tier smartphone featuring a high-resolution display and pro multi-lens camera layout.',
     images: ['../assets/phone6.png'],
     colors: [{ name: 'Phantom Black', hex: '#111111' }, { name: 'Silver', hex: '#bdc3c7' }],
-    sizes: ['12GB / 512GB']
+    specifications: ['12GB / 512GB']
   },
   'phone-6': {
     title: 'I PHONE 14 PRO MAX C2',
@@ -115,7 +115,7 @@ export const PRODUCTS = {
     description: 'The ultimate iPhone experience with Dynamic Island, an ultra-fast A-series chip, and cinematic video recording.',
     images: ['../assets/phone5.png'],
     colors: [{ name: 'Deep Purple', hex: '#4a3b5c' }, { name: 'Space Black', hex: '#212121' }],
-    sizes: ['16GB / 512GB']
+    specifications: ['16GB / 512GB']
   },
 
   // --- Trending Offers ---
@@ -129,7 +129,7 @@ export const PRODUCTS = {
     description: 'Effective germ protection with skin-friendly moisturizers. Extra 5% off on bulk purchases.',
     images: ['../assets/sanitizer.png'],
     colors: [{ name: 'Clear', hex: '#ecf0f1' }],
-    sizes: ['Standard']
+    sizes: ['200ml', '500ml']
   },
   'masks': {
     title: 'Masks',
