@@ -74,7 +74,7 @@ const hamburgerToggle = document.getElementById('hamburgerToggle');
             });
 
             document.addEventListener('click', (e) => {
-    const item = e.target.closest('.launch-item, .trending-item');
+    const item = e.target.closest('.launch-item, .trending-item, .product-card');
     if (!item) return;
     const productId = item.dataset.id;
     if (productId) {
