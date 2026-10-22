@@ -10,7 +10,7 @@ const hamburgerToggle = document.getElementById('hamburgerToggle');
         } else {
             hamburgerToggle.innerHTML = '&#9776;'; // Hamburger icon
         }
-    });
+});
 
 
             // ===== Mobile Search toggle =====
@@ -73,11 +73,22 @@ const hamburgerToggle = document.getElementById('hamburgerToggle');
                 }
             });
 
-            document.addEventListener('click', (e) => {
-    const item = e.target.closest('.launch-item, .trending-item, .product-card');
-    if (!item) return;
-    const productId = item.dataset.id;
-    if (productId) {
-        window.location.href = `pages/product.html?id=${productId}`;
-    }
-});
+    document.addEventListener('click', (e) => {
+        const item = e.target.closest('.launch-item, .trending-item, .product-card');
+        if (!item) return;
+        const productId = item.dataset.id;
+        if (productId) {
+            window.location.href = `pages/product.html?id=${productId}`;
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        const categoryLink = e.target.closest('.category-link');
+        if (!categoryLink) return;
+
+        e.preventDefault();
+        const categoryName = categoryLink.dataset.category;
+        if (categoryName) {
+            window.location.href = `pages/shop.html?category=${encodeURIComponent(categoryName)}`;
+        }
+    });

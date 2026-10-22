@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - WOWMART</title>
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-flex">
+            <div class="logo"><span class="logo-text">WOWMART</span></div>
+            <div class="cart-action">
+                <a href="../index.html" class="cart-btn"><i class="fa-solid fa-house"></i> Home</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container breadcrumb">
+        <a href="../index.html">Home</a> / <span id="breadcrumb-category">Shop</span>
+    </div>
+
+    <!-- Main Shop Section -->
+    <main class="container shop-main">
+        <!-- Sidebar Filter -->
+        <aside class="sidebar-filter">
+            <div class="filter-header">
+                <h3>Filter</h3>
+                <span class="advanced-filter">Advanced</span>
+            </div>
+
+            <!-- Brand Filter -->
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <div class="search-brand">
+                    <input type="text" placeholder="Search brand...">
+                </div>
+                <ul class="brand-list" id="brandFilterList">
+                    <li><label><input type="checkbox" value="Nike"> Nike <span>123</span></label></li>
+                    <li><label><input type="checkbox" value="Adidas"> Adidas <span>55</span></label></li>
+                    <li><label><input type="checkbox" value="Apple"> Apple <span>65</span></label></li>
+                    <li><label><input type="checkbox" value="Uniqlo"> Uniqlo <span>61</span></label></li>
+                </ul>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="filter-group">
+                <h4>Price</h4>
+                <div class="price-inputs">
+                    <input type="text" value="29,00 SAR" readonly>
+                    <span>-</span>
+                    <input type="text" value="300,000 SAR" readonly>
+                </div>
+            </div>
+
+            <!-- Size Filter -->
+            <div class="filter-group">
+                <h4>Size</h4>
+                <div class="size-grid">
+                    <button type="button" class="size-pill">XXS</button>
+                    <button type="button" class="size-pill">XS</button>
+                    <button type="button" class="size-pill">S</button>
+                    <button type="button" class="size-pill">M</button>
+                    <button type="button" class="size-pill">L</button>
+                    <button type="button" class="size-pill">XL</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Product Listing Area -->
+        <section class="product-listing-area">
+            <div class="listing-header">
+                <h2 id="resultCount">Loading results...</h2>
+                <div class="sort-box">
+                    <label for="sortSelect">Sort by:</label>
+                    <select id="sortSelect">
+                        <option value="popular">Popular</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="shop-grid" id="shopGrid">
+                <!-- Products will be loaded dynamically via shop.js -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 WOWMART. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="shop.js"></script>
+</body>
+</html>

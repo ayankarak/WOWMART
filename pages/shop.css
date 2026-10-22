@@ -1,0 +1,224 @@
+/* ===========================
+   Shop Page Layout Styles
+   =========================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+.main-header {
+    background: #007bff;
+    color: #fff;
+    padding: 15px 0;
+}
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+.cart-btn {
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 15px 0;
+    font-size: 14px;
+    color: #666;
+}
+.breadcrumb a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Main Layout: Sidebar + Grid */
+.shop-main {
+    display: flex;
+    gap: 30px;
+    padding-bottom: 50px;
+}
+
+/* Sidebar Filter */
+.sidebar-filter {
+    width: 260px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.advanced-filter {
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+}
+.filter-group {
+    margin-bottom: 25px;
+}
+.filter-group h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+.search-brand input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.brand-list {
+    list-style: none;
+}
+.brand-list li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+.brand-list label {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.brand-list span {
+    color: #888;
+}
+
+/* Price Inputs */
+.price-inputs {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.price-inputs input {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Size Pills */
+.size-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.size-pill {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+.size-pill:hover, .size-pill.active {
+    border-color: #007bff;
+    color: #007bff;
+    background: #eef5ff;
+}
+
+/* Product Listing Area */
+.product-listing-area {
+    flex: 1;
+}
+.listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.listing-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.sort-box select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
+/* Shop Grid */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+    position: relative;
+}
+.product-card:hover {
+    transform: translateY(-3px);
+}
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+.product-card h4 {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+}
+.product-card .price {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 15px;
+}
+
+/* Footer */
+footer {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .shop-main {
+        flex-direction: column;
+    }
+    .sidebar-filter {
+        width: 100%;
+    }
+}
