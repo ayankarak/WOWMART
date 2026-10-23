@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WOWMART</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
@@ -32,13 +33,13 @@
                 <i class="fa-solid fa-cart-shopping logo-icon"></i>
                 <span class="logo-text">WOWMART</span>
             </div>
-            <div class="search-bar">
-                <select class="category-select">
-                    <option>All Categories</option>
+            <form class="search-bar" id="searchForm" role="search">
+                <select class="category-select" id="searchCategory" aria-label="Search category">
+                    <option value="">All Categories</option>
                 </select>
-                <input type="text" placeholder="Search for products, brands and more">
-                <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+                <input type="text" id="searchInput" placeholder="Search for products, brands and more" aria-label="Search products">
+                <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
             <div class="cart-action">
                 <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> My Cart (0)</button>
             </div>
@@ -395,6 +396,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
