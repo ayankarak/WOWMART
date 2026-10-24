@@ -19,28 +19,7 @@ body {
     padding: 0 15px;
 }
 
-/* Header */
-.main-header {
-    background: #007bff;
-    color: #fff;
-    padding: 15px 0;
-}
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.logo-text {
-    font-size: 24px;
-    font-weight: bold;
-}
-.cart-btn {
-    color: #fff;
-    text-decoration: none;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 15px;
-    border-radius: 4px;
-}
+/* Site header: see ../header.css */
 
 /* Breadcrumb */
 .breadcrumb {

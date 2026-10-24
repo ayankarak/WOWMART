@@ -1,42 +1,7 @@
 /* ===========================
    Search bar: suggestions dropdown
+   (the search bar / mobile panel themselves are styled in header.css)
    =========================== */
-
-/* Let the dropdown escape the bar (style.css clips it with overflow:hidden) */
-.search-bar {
-    position: relative;
-    overflow: visible;
-}
-.search-bar .category-select { border-radius: 2px 0 0 2px; }
-.search-bar .search-btn      { border-radius: 0 2px 2px 0; }
-
-/* Shop page has no style.css, so give the bar its basic look here */
-.main-header .search-bar {
-    display: flex;
-    flex: 1;
-    max-width: 600px;
-    margin: 0 24px;
-    border: 2px solid #0056b3;
-    border-radius: 4px;
-    background: #fff;
-}
-.main-header .search-bar .category-select {
-    background: #f1f1f1; border: none; padding: 10px 12px; font-size: 14px; color: #333; outline: none;
-    border-right: 1px solid #e3e3e3; max-width: 150px;
-}
-.main-header .search-bar input {
-    flex: 1; min-width: 0; border: none; padding: 10px 15px; font-size: 14px; outline: none;
-}
-.main-header .search-bar .search-btn {
-    background: #5fa4ed; color: #fff; border: none; padding: 0 20px; font-size: 16px; cursor: pointer;
-}
-.main-header .search-bar .search-btn:hover { background: #67bed9; }
-
-@media (max-width: 768px) {
-    /* Shop page only: index hides the bar and uses the mobile panel instead */
-    body:not(:has(.mobile-search-panel)) .main-header .header-flex { flex-wrap: wrap; gap: 10px; }
-    body:not(:has(.mobile-search-panel)) .main-header .search-bar { order: 3; flex-basis: 100%; margin: 0; max-width: none; }
-}
 
 /* Dropdown */
 .search-suggest {
@@ -90,10 +55,9 @@
 .suggest-empty { padding: 18px 14px; font-size: 14px; color: #555; text-align: center; }
 .suggest-empty small { color: #888; }
 
-/* Mobile panel (index.html): dropdown sits in the panel under the input */
+/* Mobile panel: the dropdown sits in the panel, under the input
+   (panel open/grow rules are in header.css) */
 @media (max-width: 768px) {
-    .mobile-search-panel { position: relative; }
-    .mobile-search-panel.open.has-results { max-height: 80vh; overflow: visible; }
     .mobile-search-panel .search-suggest {
         position: static;
         margin: 0 16px 12px;

@@ -1,0 +1,306 @@
+/* =====================================================================
+   WOWMART shared site header  (rendered by header.js into #site-header)
+
+   Every rule is scoped under #site-header so it looks identical on
+   index.html, pages/shop.html and pages/product.html no matter what
+   .container / .logo / .cart-btn rules those pages' own CSS defines.
+
+   Breakpoints: 1200 (nav tightens) · 1024 (search bar margin) · 768 (mobile
+   layout) · 480 (small phones). Keep 768 in sync with header.js.
+   ===================================================================== */
+
+#site-header {
+    --header-bg: #0071ce;      /* top bar, main header and category nav */
+    --header-border: #67bed9;
+    line-height: 1.5;
+    font-size: 16px;
+    color: #333;
+}
+#site-header,
+#site-header *,
+#site-header *::before,
+#site-header *::after {
+    box-sizing: border-box;
+}
+/* Pages set different fonts on `*`; pin the header to one (icons <i> keep Font Awesome) */
+#site-header :where(a, span, div, p, form, nav, header, button, input, select, option, label) {
+    font-family: sans-serif;
+}
+
+#site-header .container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ---------- Top utility bar ---------- */
+#site-header .top-bar {
+    background-color: var(--header-bg);
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 0;
+}
+#site-header .top-bar-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#site-header .top-left span { margin-right: 20px; }
+#site-header .top-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 20px;
+}
+#site-header .top-right a:hover { text-decoration: underline; }
+
+/* ---------- Main header ---------- */
+#site-header .main-header {
+    background-color: var(--header-bg);
+    border-bottom: 1px solid var(--header-border);
+    padding: 15px 0;
+}
+#site-header .header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#site-header .logo {
+    display: flex;
+    align-items: center;
+    color: #fcfcfc;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+#site-header .logo-icon {
+    font-size: 28px;
+    margin-right: 8px;
+}
+
+/* Desktop search bar (the suggestions dropdown styles are in search.css) */
+#site-header .search-bar {
+    position: relative;
+    display: flex;
+    flex: 1;
+    max-width: 600px;
+    margin: 0 40px;
+    border: 2px solid #0056b3;
+    border-radius: 4px;
+    background: #fff;
+}
+#site-header .category-select {
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    border-right: 1px solid #f3f0f0;
+    max-width: 150px;
+    border-radius: 2px 0 0 2px;
+}
+#site-header .search-bar input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    outline: none;
+    background: transparent;
+}
+#site-header .search-btn {
+    background-color: #5fa4ed;
+    color: #fff;
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+}
+#site-header .search-btn:hover { background-color: #67bed9; }
+
+#site-header .cart-btn {
+    display: inline-block;
+    background-color: #20718a;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: normal;
+    text-decoration: none;
+}
+#site-header .cart-btn:hover { background-color: #67bed9; }
+
+/* ---------- Category navigation ---------- */
+#site-header .nav-bar { background-color: var(--header-bg); }
+#site-header .nav-flex {
+    display: flex;
+    justify-content: space-between;
+}
+#site-header .nav-flex a {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+#site-header .nav-flex a:hover,
+#site-header .nav-flex a.active { background-color: #67bed9; }
+#site-header .nav-flex a i { color: #d1ecf4; }
+
+/* Mobile-only pieces are hidden on desktop */
+#site-header .hamburger-btn,
+#site-header .mobile-header-actions,
+#site-header .mobile-search-panel { display: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1200px) {
+    #site-header .nav-flex a {
+        padding: 12px 10px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #site-header .search-bar { margin: 0 20px; }
+}
+
+@media (max-width: 768px) {
+    #site-header { --header-bg: #2596be; }   /* the mobile header has always been this lighter teal */
+    #site-header .top-bar { display: none; }
+    #site-header .container { padding: 0 16px; }
+
+    /* Header row: logo only. Cart/Account move to the mobile action bar, search to the panel */
+    #site-header .header-flex { flex-wrap: wrap; }
+    #site-header .logo { order: 1; }
+    #site-header .cart-action { display: none; }
+    #site-header .search-bar { display: none !important; }
+
+    /* Hamburger + collapsible category menu */
+    #site-header .hamburger-btn {
+        display: block;
+        margin-left: auto;
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: #fafafb;
+        padding: 10px 15px;
+    }
+    #site-header .nav-bar { overflow-x: hidden; }
+    #site-header .nav-flex {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        min-width: 100%;
+    }
+    #site-header .nav-flex.active { display: flex; }
+    #site-header .nav-flex a {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Mobile action bar (Categories / Search / Account / Cart) */
+    #site-header .mobile-header-actions {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #0056b3;
+        padding: 10px 0;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    #site-header .mobile-action-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        font-size: 11px;
+        gap: 4px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    #site-header .mobile-action-item i { font-size: 18px; }
+    #site-header .mobile-action-item:hover,
+    #site-header .mobile-action-item:active {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    }
+    #site-header .mobile-action-item.active { background: rgba(255, 255, 255, 0.2); }
+
+    /* Slide-down search panel */
+    #site-header .mobile-search-panel {
+        display: block;
+        position: relative;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        background-color: #005bb0;
+        transition: max-height 0.3s ease, opacity 0.25s ease;
+    }
+    #site-header .mobile-search-panel.open {
+        max-height: 80px;
+        opacity: 1;
+    }
+    /* Suggestions are showing: let the panel grow to hold them */
+    #site-header .mobile-search-panel.open.has-results {
+        max-height: 80vh;
+        overflow: visible;
+    }
+    #site-header .mobile-search-form {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 16px;
+        padding: 0 6px 0 14px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    #site-header .mobile-search-icon {
+        color: #0071ce;
+        font-size: 15px;
+    }
+    #site-header .mobile-search-form input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 12px 0;
+        font-size: 15px;
+        color: #333;
+    }
+    #site-header .mobile-search-close {
+        background: none;
+        border: none;
+        color: #777;
+        font-size: 18px;
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+    #site-header .mobile-search-close:hover {
+        color: #0071ce;
+        background: #eef5fc;
+    }
+}
+
+@media (max-width: 480px) {
+    #site-header .logo-text { font-size: 20px; }
+    #site-header .logo-icon { font-size: 24px; }
+}

@@ -1,4 +1,9 @@
 import { PRODUCTS } from './productData.js';
+import { initSiteHeader } from '../header.js';
+import { homeUrl, accountUrl, shopUrl } from '../paths.js';
+
+// Shared header (menu, search bars, category links)
+initSiteHeader();
 
 (function () {
   'use strict';
@@ -40,11 +45,14 @@ import { PRODUCTS } from './productData.js';
   }
 
   // Set page titles and breadcrumbs
-  document.title = product.title + ' - WILLMART';
+  document.title = product.title + ' - WOWMART';
   const breadcrumbTitle = document.getElementById('breadcrumb-title');
   const breadcrumbCategory = document.getElementById('breadcrumb-category');
   if (breadcrumbTitle) breadcrumbTitle.textContent = product.title;
-  if (breadcrumbCategory) breadcrumbCategory.textContent = product.category;
+  if (breadcrumbCategory) {
+    breadcrumbCategory.textContent = product.category;
+    breadcrumbCategory.href = shopUrl('', product.category);   // -> shop.html?category=...
+  }
 
   container.innerHTML = buildHTML(product);
   bindEvents(product);
@@ -62,7 +70,7 @@ import { PRODUCTS } from './productData.js';
       ? 'We couldn\'t find a product with the id "' + badId + '".'
       : 'No product id was given in the URL.';
     const a = document.createElement('a');
-    a.href = '../index.html';
+    a.href = homeUrl();
     a.className = 'buy-now-btn';
     a.textContent = 'Back to home';
 
@@ -228,7 +236,8 @@ import { PRODUCTS } from './productData.js';
 
       const loggedInUser = localStorage.getItem('loggedInUser');
       if (!loggedInUser) {
-        window.location.href = 'account.html?redirect=' + encodeURIComponent('product.html' + window.location.search);
+        // account.html lives in the site root; auth.js sends the user back to this product afterwards
+        window.location.href = accountUrl('pages/product.html' + window.location.search);
         return;
       }
       let cart = JSON.parse(localStorage.getItem('cart')) || [];

@@ -1,30 +1,20 @@
 // =====================================================================
-// WOWMART search feature (shared by index.html and pages/shop.html)
+// WOWMART search feature (shared by every page via header.js and shop.js)
 //
 //  - searchProducts(): ranked, multi-word search over the product catalogue
 //  - initSearch():     wires a search form with live suggestions, keyboard
 //                      navigation, category filter and recent searches
 // =====================================================================
 import { PRODUCTS } from './pages/productData.js';
+import { productUrl, shopUrl, assetUrl } from './paths.js';
 
 const RECENT_KEY = 'recentSearches';
 const MAX_SUGGESTIONS = 6;
 const MAX_RECENT = 5;
 
-// ---------- Paths (this file is used from "/" and from "/pages/") ----------
-const inPagesDir = window.location.pathname.includes('/pages/');
-const PAGES_BASE = inPagesDir ? '' : 'pages/';
-// productData.js image paths are written relative to /pages/, so fix them for index.html
-const imgSrc = (p) => (inPagesDir ? p : p.replace(/^\.\.\//, ''));
-const productUrl = (id) => `${PAGES_BASE}product.html?id=${encodeURIComponent(id)}`;
-
-export function shopUrl(query, category) {
-    const params = new URLSearchParams();
-    if (query) params.set('q', query);
-    if (category) params.set('category', category);
-    const qs = params.toString();
-    return `${PAGES_BASE}shop.html${qs ? '?' + qs : ''}`;
-}
+// Links are built by paths.js, so they resolve correctly from / and /pages/
+// (re-exported so existing `import { shopUrl } from './search.js'` keeps working)
+export { shopUrl };
 
 // ---------- Helpers ----------
 const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => (
@@ -180,7 +170,7 @@ export function initSearch({ form, input, select, mount, onChange }) {
             } else {
                 html = results.slice(0, MAX_SUGGESTIONS).map((p, i) => `
                     <a class="suggest-row" role="option" id="${boxId}-${i}" href="${productUrl(p.id)}" data-query="${escapeHtml(q)}">
-                        <img src="${escapeHtml(imgSrc(p.images[0]))}" alt="" loading="lazy">
+                        <img src="${escapeHtml(assetUrl(p.images[0]))}" alt="" loading="lazy">
                         <span class="suggest-text">
                             <span class="suggest-title">${highlight(p.title, terms)}</span>
                             <span class="suggest-meta">in ${escapeHtml(p.category)}</span>

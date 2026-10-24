@@ -5,100 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WOWMART</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="top-bar">
-        <div class="container top-bar-flex">
-            <div class="top-left">
-                <span><i class="fa-solid id-badge"></i> My City: Bengaluru</span>
-                <span><i class="fa-solid fa-phone"></i> +91-0000000000</span>
-            </div>
-            <div class="top-right">
-                <a href="#">Wholesale</a>
-                <a href="#">Blog</a>
-                <a href="#">Community</a>
-                <a href="#">My Account</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="container header-flex">
-            <div class="logo">
-                <i class="fa-solid fa-cart-shopping logo-icon"></i>
-                <span class="logo-text">WOWMART</span>
-            </div>
-            <form class="search-bar" id="searchForm" role="search">
-                <select class="category-select" id="searchCategory" aria-label="Search category">
-                    <option value="">All Categories</option>
-                </select>
-                <input type="text" id="searchInput" placeholder="Search for products, brands and more" aria-label="Search products">
-                <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            <div class="cart-action">
-                <button class="cart-btn"><i class="fa-solid fa-cart-shopping"></i> My Cart (0)</button>
-            </div>
-            <div class="cart-action">
-                <a href="account.html" class="cart-btn">
-                    <i class="fa-solid fa-user"></i> Account
-                </a>
-            </div>
-        </div>
-    </header>
-
-        <!-- Mobile Header Actions (Only visible in mobile view) -->
-        <div class="mobile-header-actions">
-            <a href="#categories" class="mobile-action-item">
-                <i class="fa fa-th-large"></i>
-                <span>Categories</span>
-            </a>
-            <a href="#search" class="mobile-action-item" id="mobileSearchToggle" role="button" aria-controls="mobileSearchPanel" aria-expanded="false">
-                <i class="fa fa-search"></i>
-                <span>Search</span>
-            </a>
-            <a href="account.html" class="mobile-action-item">
-                <i class="fa fa-user"></i>
-                <span>Account</span>
-            </a>
-            <a href="#cart" class="mobile-action-item">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Cart</span>
-            </a>
-        </div>
-
-    <!-- Mobile Search Panel (slides open from the Search button) -->
-    <div class="mobile-search-panel" id="mobileSearchPanel" aria-hidden="true">
-        <form class="mobile-search-form" id="mobileSearchForm" role="search">
-            <i class="fa-solid fa-magnifying-glass mobile-search-icon"></i>
-            <input type="search" id="mobileSearchInput" placeholder="Search for products, brands and more" aria-label="Search" tabindex="-1">
-            <button type="button" class="mobile-search-close" id="mobileSearchClose" aria-label="Close search" tabindex="-1">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-        </form>
-    </div>
-
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <button class="hamburger-btn" id="hamburgerToggle" aria-label="Toggle navigation">
-            &#9776;
-        </button>
-        <div class="container nav-flex" id="navMenu">
-            <a href="#" class="category-link" data-category="Women"><i class="fa-solid fa-person-dress"></i>Women</a>
-            <a href="#" class="category-link" data-category="Men"><i class="fa-solid fa-shirt"></i>Men</a>
-            <a href="#" class="category-link" data-category="Kids"><i class="fa-solid fa-baby-carriage"></i>Kids</a>
-            <a href="#" class="category-link" data-category="Footwear"><i class="fa-solid fa-shoe-prints"></i>Footwear</a>
-            <a href="#" class="category-link" data-category="Electronics"><i class="fa-solid fa-laptop"></i>Electronics</a>
-            <a href="#" class="category-link" data-category="Mobiles"><i class="fa-solid fa-mobile-screen"></i>Mobiles</a>
-            <a href="#" class="category-link" data-category="Home & Living"><i class="fa-solid fa-house"></i>Home & Living</a>
-            <a href="#" class="category-link" data-category="Grocery"><i class="fa-solid fa-basket-shopping"></i>Grocery</a>
-            <a href="#" class="category-link" data-category="Beauty"><i class="fa-solid fa-spa"></i>Beauty</a>
-        </div>
-    </nav>
+    <!-- Shared header (top bar, search, mobile bar, category nav) is rendered by header.js -->
+    <div id="site-header"></div>
 
     <!-- Hero Banner Section -->
     <section class="hero-section">
@@ -356,11 +271,11 @@
             <div class="footer-col">
                 <h4>Products</h4>
                 <ul>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Kids</a></li>
-                    <li><a href="#">Footwear</a></li>
-                    <li><a href="#">Electronics</a></li>
+                    <li><a href="pages/shop.html?category=Women">Women</a></li>
+                    <li><a href="pages/shop.html?category=Men">Men</a></li>
+                    <li><a href="pages/shop.html?category=Kids">Kids</a></li>
+                    <li><a href="pages/shop.html?category=Footwear">Footwear</a></li>
+                    <li><a href="pages/shop.html?category=Electronics">Electronics</a></li>
                 </ul>
             </div>
             <div class="footer-col">
