@@ -134,6 +134,20 @@ function initAccountLabel(root) {
     root.querySelectorAll('[data-account-label]').forEach((el) => { el.textContent = user; });
 }
 
+/** Highlight the nav link matching ?category=... in the URL (e.g. shop.html?category=Kids). */
+function initActiveCategory(root) {
+    const current = new URLSearchParams(window.location.search).get('category');
+    const links = root.querySelectorAll('.category-link');
+
+    links.forEach((link) => {
+        const isMatch = !!current &&
+            link.dataset.category.toLowerCase() === current.trim().toLowerCase();
+        link.classList.toggle('active-category', isMatch);
+        if (isMatch) link.setAttribute('aria-current', 'page');
+        else link.removeAttribute('aria-current');
+    });
+}
+
 /** Hamburger button <-> category menu (mobile). */
 function initNavMenu(root) {
     const toggle = root.querySelector('#hamburgerToggle');
@@ -256,6 +270,7 @@ export function initSiteHeader() {
     root.dataset.ready = 'true';
 
     initAccountLabel(root);
+    initActiveCategory(root);
     initNavMenu(root);
     initMobileSearch(root);
     initDesktopSearch(root);

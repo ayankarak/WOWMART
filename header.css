@@ -153,7 +153,13 @@
     gap: 8px;
 }
 #site-header .nav-flex a:hover,
-#site-header .nav-flex a.active { background-color: #67bed9; }
+#site-header .nav-flex a.active,
+#site-header .nav-flex a.active-category { background-color: #67bed9; }
+#site-header .nav-flex a.active-category {
+    box-shadow: inset 0 -3px 0 #fff;   /* underline bar so it reads as a selected tab */
+    font-weight: 600;
+}
+#site-header .nav-flex a.active-category i { color: #fff; }
 #site-header .nav-flex a i { color: #d1ecf4; }
 
 /* Mobile-only pieces are hidden on desktop */
