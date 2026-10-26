@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Summary - WOWMART</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Shared header is rendered by ../header.js -->
+    <div id="site-header"></div>
+
+    <main class="container">
+        <ol class="stepper" id="stepper" aria-label="Checkout progress"></ol>
+
+        <div class="checkout-grid">
+            <div>
+                <section class="card">
+                    <div class="card-head"><h2><i class="fa-solid fa-location-dot"></i> Delivering to</h2>
+                        <a class="link-btn" href="location.html" id="changeAddress">Change</a></div>
+                    <div class="address-box" id="addressBox"></div>
+                </section>
+                <section class="card">
+                    <h2><i class="fa-solid fa-box"></i> Item</h2>
+                    <div class="bill-item" id="itemRow"></div>
+                </section>
+            </div>
+            <aside class="card" aria-label="Bill details">
+                <h2><i class="fa-solid fa-receipt"></i> Bill details</h2>
+                <table class="bill-table" id="billTable"></table>
+                <p class="note" id="billNote"></p>
+                <button type="button" class="btn btn-primary btn-block" id="orderNowBtn" style="margin-top:18px">Order Now</button>
+            </aside>
+        </div>
+
+        <!-- Modal 1: choose COD or Payment Now -->
+        <div class="modal-overlay" id="payModal" aria-hidden="true">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="payModalTitle">
+                <div class="modal-header"><h2 id="payModalTitle">How would you like to pay?</h2>
+                    <button type="button" class="modal-close" data-close aria-label="Close">&times;</button></div>
+                <p class="modal-sub">Total to pay: <strong data-total></strong></p>
+                <button type="button" class="pay-option" id="codBtn">
+                    <i class="fa-solid fa-money-bill-wave lead"></i>
+                    <span><strong>Cash on Delivery (COD)</strong><small>Pay when your order arrives</small></span>
+                    <i class="fa-solid fa-chevron-right chev"></i></button>
+                <button type="button" class="pay-option" id="payNowBtn">
+                    <i class="fa-solid fa-credit-card lead"></i>
+                    <span><strong>Payment Now</strong><small>UPI or Net Banking</small></span>
+                    <i class="fa-solid fa-chevron-right chev"></i></button>
+            </div>
+        </div>
+
+        <!-- Modal 2: UPI or Net Banking -->
+        <div class="modal-overlay" id="onlineModal" aria-hidden="true">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="onlineModalTitle">
+                <div class="modal-header"><h2 id="onlineModalTitle">Choose a payment method</h2>
+                    <button type="button" class="modal-close" data-close aria-label="Close">&times;</button></div>
+                <p class="modal-sub">Total to pay: <strong data-total></strong></p>
+                <button type="button" class="pay-option" id="upiBtn">
+                    <i class="fa-solid fa-mobile-screen-button lead"></i>
+                    <span><strong>UPI Payment</strong><small>Google Pay, PhonePe, Paytm and more</small></span>
+                    <i class="fa-solid fa-chevron-right chev"></i></button>
+                <button type="button" class="pay-option" id="netBankBtn">
+                    <i class="fa-solid fa-building-columns lead"></i>
+                    <span><strong>Net Banking</strong><small>Pay from your bank account</small></span>
+                    <i class="fa-solid fa-chevron-right chev"></i></button>
+                <button type="button" class="btn btn-secondary modal-back" id="backToPayModal"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 WOWMART. All rights reserved.</footer>
+
+    <script type="module" src="billing.js"></script>
+</body>
+</html>

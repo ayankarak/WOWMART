@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Location - WOWMART</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Shared header is rendered by ../header.js -->
+    <div id="site-header"></div>
+
+    <main class="container">
+        <ol class="stepper" id="stepper" aria-label="Checkout progress"></ol>
+
+        <div class="checkout-grid">
+            <section class="card">
+                <h1><i class="fa-solid fa-location-dot"></i> Delivery location</h1>
+                <div class="saved-addresses" id="savedAddresses" hidden></div>
+                <form id="addressForm" novalidate>
+                    <div class="form-grid">
+                        <div class="field"><label for="fullName">Full name</label>
+                            <input id="fullName" name="fullName" autocomplete="name" required><span class="error"></span></div>
+                        <div class="field"><label for="phone">Mobile number</label>
+                            <input id="phone" name="phone" type="tel" inputmode="numeric" maxlength="10" autocomplete="tel-national" placeholder="10-digit number" required><span class="error"></span></div>
+                        <div class="field full"><label for="line1">Address (house no., street, area)</label>
+                            <input id="line1" name="line1" autocomplete="address-line1" required><span class="error"></span></div>
+                        <div class="field full"><label for="landmark">Landmark (optional)</label>
+                            <input id="landmark" name="landmark"><span class="error"></span></div>
+                        <div class="field"><label for="city">City</label>
+                            <input id="city" name="city" autocomplete="address-level2" required><span class="error"></span></div>
+                        <div class="field"><label for="state">State</label>
+                            <input id="state" name="state" autocomplete="address-level1" required><span class="error"></span></div>
+                        <div class="field"><label for="pincode">PIN code</label>
+                            <input id="pincode" name="pincode" inputmode="numeric" maxlength="6" autocomplete="postal-code" placeholder="6-digit PIN" required><span class="error"></span></div>
+                        <div class="field"><label>Address type</label>
+                            <div class="type-row">
+                                <label><input type="radio" name="type" value="Home" checked> Home</label>
+                                <label><input type="radio" name="type" value="Work"> Work</label>
+                                <label><input type="radio" name="type" value="Other"> Other</label>
+                            </div></div>
+                    </div>
+                    <div class="actions">
+                        <a class="btn btn-secondary" id="backLink" href="shop.html">Back</a>
+                        <button type="submit" class="btn btn-primary">Proceed to Bill <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </form>
+            </section>
+
+            <aside class="card" aria-label="Order summary">
+                <h2><i class="fa-solid fa-bag-shopping"></i> Your item</h2>
+                <div class="bill-item" id="miniItem"></div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 WOWMART. All rights reserved.</footer>
+
+    <script type="module" src="location.js"></script>
+</body>
+</html>
