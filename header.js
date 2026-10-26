@@ -14,6 +14,7 @@
 // =====================================================================
 import { initSearch } from './search.js';
 import { homeUrl, accountUrl, shopUrl } from './paths.js';
+import { initCartBadge } from './cart.js';
 
 const MOBILE_BREAKPOINT = 768; // keep in sync with header.css
 
@@ -76,7 +77,7 @@ function headerTemplate() {
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <div class="cart-action">
-                <button class="cart-btn" type="button"><i class="fa-solid fa-cart-shopping"></i> My Cart (0)</button>
+                <button class="cart-btn" type="button" data-cart-label><i class="fa-solid fa-cart-shopping"></i> My Cart (<span data-cart-count>0</span>)</button>
             </div>
             <div class="cart-action">
                 <a href="${account}" class="cart-btn" data-account-link>
@@ -101,7 +102,7 @@ function headerTemplate() {
         </a>
         <a href="#cart" class="mobile-action-item">
             <i class="fa fa-shopping-cart"></i>
-            <span>Cart</span>
+            <span>Cart (<span data-cart-count>0</span>)</span>
         </a>
     </div>
 
@@ -270,6 +271,7 @@ export function initSiteHeader() {
     root.dataset.ready = 'true';
 
     initAccountLabel(root);
+    initCartBadge();               // fills the My Cart (X) badge and keeps it live
     initActiveCategory(root);
     initNavMenu(root);
     initMobileSearch(root);

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - WOWMART</title>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../header.css">
+    <link rel="stylesheet" href="../search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Shared header is rendered by ../header.js -->
+    <div id="site-header"></div>
+
+    <main class="container">
+        <ol class="stepper" id="stepper" aria-label="Checkout progress"></ol>
+
+        <div class="checkout-grid">
+            <section class="card">
+                <h1 id="payTitle"><i class="fa-solid fa-mobile-screen-button"></i> UPI payment</h1>
+                <div class="amount-banner"><span>Amount payable</span><strong id="amount"></strong></div>
+
+                <div id="upiSection" hidden>
+                    <h2 style="font-size:16px">Pay with a UPI app</h2>
+                    <div class="upi-apps" id="upiApps" role="group" aria-label="UPI apps"></div>
+                    <p class="divider">or enter your UPI ID</p>
+                    <div class="field"><label for="upiId">UPI ID</label>
+                        <input id="upiId" placeholder="name@bank" autocomplete="off" spellcheck="false"><span class="error" id="upiError"></span></div>
+                </div>
+
+                <div id="bankSection" hidden>
+                    <div class="field"><label for="bankSelect">Select your bank</label>
+                        <select id="bankSelect"></select><span class="error" id="bankError"></span></div>
+                </div>
+
+                <div class="actions">
+                    <a class="btn btn-secondary" href="billing.html">Back to bill</a>
+                    <button type="button" class="btn btn-primary" id="payBtn"></button>
+                </div>
+                <p class="note">This is a demo checkout: no real payment is made.</p>
+            </section>
+            <aside class="card" aria-label="Order summary">
+                <h2><i class="fa-solid fa-bag-shopping"></i> Your item</h2>
+                <div class="bill-item" id="miniItem"></div>
+            </aside>
+        </div>
+        <div class="processing" id="processing" role="status" aria-live="polite">
+            <div class="spinner"></div><span>Processing your payment&hellip;</span>
+            <small style="font-weight:400;color:#6a757f">Please don't close or refresh this page</small>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 WOWMART. All rights reserved.</footer>
+
+    <script type="module" src="payment.js"></script>
+</body>
+</html>

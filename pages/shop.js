@@ -11,8 +11,10 @@
 import { initSiteHeader } from '../header.js';
 import { searchProducts } from '../search.js';
 import { productUrl } from '../paths.js';
+import { initCartButtons } from '../cart.js';
 
 initSiteHeader();
+initCartButtons();   // quick "Add to Cart" on the cards below
 
 (function () {
     'use strict';
@@ -71,6 +73,7 @@ initSiteHeader();
                 <img src="${escapeHtml(p.images[0])}" alt="${escapeHtml(p.title)}">
                 <h4>${escapeHtml(p.title)}</h4>
                 <div class="price">${formatPrice(p.price)}</div>
+                <button type="button" class="card-cart-btn" data-add-to-cart data-id="${escapeHtml(p.id)}"${p.stock > 0 ? '' : ' disabled'}>${p.stock > 0 ? (p.sizes && p.sizes.length ? 'Choose size' : 'Add to Cart') : 'Out of stock'}</button>
             </div>
         `).join('');
     }

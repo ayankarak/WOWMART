@@ -201,3 +201,19 @@ footer {
         width: 100%;
     }
 }
+/* Quick add-to-cart button on shop cards */
+.card-cart-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 9px 0;
+    border: 1px solid #1b7ea0;
+    background: #fff;
+    color: #1b7ea0;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+}
+.card-cart-btn:hover { background: #1b7ea0; color: #fff; }
+.card-cart-btn:disabled { border-color: #bbb; color: #999; background: #f3f3f3; cursor: not-allowed; }

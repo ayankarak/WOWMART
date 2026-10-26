@@ -1,6 +1,8 @@
 import { PRODUCTS } from './productData.js';
 import { initSiteHeader } from '../header.js';
 import { homeUrl, accountUrl, shopUrl } from '../paths.js';
+import { startBuyNow } from './checkout.js';
+import { addToCart } from '../cart.js';
 
 // Shared header (menu, search bars, category links)
 initSiteHeader();
@@ -217,19 +219,19 @@ initSiteHeader();
       return { id: productId, title: p.title, price: p.price, qty: state.qty, size: state.size, color: state.color };
     }
 
-    // Add to cart button event
+    // Add to cart button event: saved by ../cart.js, which also refreshes the header badge in every open tab
     $('#addCartBtn').addEventListener('click', () => {
       const item = buildCartItem();
       if (!item) return;
 
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(item);
-      localStorage.setItem('cart', JSON.stringify(cart));
-
-      showMessage('Added to cart ✓', 'success');
+      const res = addToCart({ id: item.id, qty: item.qty, size: item.size, color: item.color });
+      if (!res.ok) return showMessage(res.reason, 'error');
+      showMessage(res.capped
+        ? `Cart updated: maximum of ${res.line.qty} for this item.`
+        : `Added to cart ✓ (${res.line.qty} in cart)`, 'success');
     });
 
-    // Buy now button event
+    // Buy now button event: product -> location.html (-> billing.html -> payment)
     $('#buyNowBtn').addEventListener('click', () => {
       const item = buildCartItem();
       if (!item) return;
@@ -240,10 +242,9 @@ initSiteHeader();
         window.location.href = accountUrl('pages/product.html' + window.location.search);
         return;
       }
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.push(item);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      showMessage('Proceeding to checkout...', 'success');
+      showMessage('Redirecting to delivery location...', 'success');
+      // Saves {id, qty, size, color} for the checkout pages and redirects to location.html?id=..&qty=..
+      startBuyNow({ id: item.id, qty: item.qty, size: item.size, color: item.color });
     });
   }
 })();
