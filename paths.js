@@ -11,6 +11,7 @@
 
 const ROOT  = new URL('./', import.meta.url);   // .../  (folder with index.html)
 const PAGES = new URL('pages/', ROOT);          // .../pages/
+const CHECKOUT = new URL('checkout/', PAGES);   // .../pages/checkout/  (location, billing, payment, confirmation)
 
 /** Absolute URL of a file in the site root, e.g. rootUrl('index.html'). */
 export const rootUrl = (path = '') => new URL(path, ROOT).href;
@@ -18,7 +19,11 @@ export const rootUrl = (path = '') => new URL(path, ROOT).href;
 /** Absolute URL of a file in /pages/, e.g. pagesUrl('shop.html'). */
 export const pagesUrl = (path = '') => new URL(path, PAGES).href;
 
+/** Absolute URL of a file in /pages/checkout/, e.g. checkoutUrl('billing.html'). */
+export const checkoutUrl = (path = '') => new URL(path, CHECKOUT).href;
+
 export const homeUrl = () => rootUrl('index.html');
+export const cartUrl = () => pagesUrl('cart.html');
 
 /**
  * Account page. `redirect` is where auth.js sends the user after signing in;

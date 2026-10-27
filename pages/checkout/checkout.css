@@ -1,4 +1,5 @@
-/* WOWMART checkout pages: location, billing, payment, order confirmation (+ modals) */
+/* WOWMART checkout pages: location, billing, payment, order confirmation (+ modals).
+   Also reused by pages/cart.html (cards, buttons, bill table, footer). */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 body { background: #f4f6f8; color: #333; }
 body.modal-open { overflow: hidden; }
@@ -60,6 +61,10 @@ a { color: #1b7ea0; }
 .bill-item img { width: 84px; height: 84px; object-fit: contain; background: #f4f6f8; border-radius: 8px; }
 .bill-item .meta { font-size: 13px; color: #6a757f; margin-top: 4px; }
 .bill-item .name { font-weight: 600; }
+.item-list .bill-item + .bill-item { margin-top: 14px; padding-top: 14px; border-top: 1px solid #eef1f3; }
+.count-pill { display: inline-block; background: #eaf7fb; color: #12647f; border-radius: 999px; padding: 0 9px; font-size: 13px; font-weight: 700; vertical-align: middle; margin-left: 4px; }
+.bill-table .qty { color: #6a757f; font-size: 13px; }
+.bill-table .sep td { border-top: 1px solid #dfe5ea; padding-top: 12px; }
 .bill-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
 .bill-table td { padding: 9px 0; font-size: 15px; }
 .bill-table td:last-child { text-align: right; white-space: nowrap; }
@@ -111,6 +116,7 @@ a { color: #1b7ea0; }
 .confirm .row { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid #eef1f3; font-size: 15px; }
 .confirm .row:last-child { border-bottom: 0; }
 .confirm .row span:first-child { color: #6a757f; }
+.confirm .row small { font-size: 12px; }
 .confirm .row span:last-child { text-align: right; }
 
 footer { background: #1c2b36; color: #c9d3da; text-align: center; padding: 22px; font-size: 14px; margin-top: 40px; }

@@ -1,5 +1,5 @@
-import { initSiteHeader } from '../header.js';
-import { homeUrl, shopUrl } from '../paths.js';
+import { initSiteHeader } from '../../header.js';
+import { homeUrl, shopUrl } from '../../paths.js';
 import { getOrder, formatPrice, esc, renderStepper } from './checkout.js';
 
 initSiteHeader();
@@ -13,17 +13,22 @@ if (!order) {
         <a class="btn btn-primary" href="${esc(shopUrl())}">Continue shopping</a></div>`;
 } else {
     const a = order.address, p = order.payment, t = order.totals;
+    const items = order.items || (order.item ? [order.item] : []);       // order.item = older single-item orders
     const eta = new Date(new Date(order.placedAt).getTime() + 5 * 864e5)
         .toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long' });
     const payLabel = p.method === 'COD' ? 'Cash on Delivery' : `${p.method}${p.detail ? ' (' + p.detail + ')' : ''}`;
-    const opts = [order.item.color, order.item.size].filter(Boolean).join(', ');
+
+    const itemRows = items.map((it) => {
+        const opts = [it.color, it.size].filter(Boolean).join(', ');
+        return `<div class="row"><span>${esc(it.title)}${opts ? ' <small>(' + esc(opts) + ')</small>' : ''}</span><span>&times; ${it.qty} &middot; ${esc(formatPrice(it.price * it.qty))}</span></div>`;
+    }).join('');
 
     root.innerHTML = `
         <div class="tick"><i class="fa-solid fa-check"></i></div>
         <h1>Thank you! Your order is confirmed</h1>
         <p class="order-id">Order ID: <strong>${esc(order.orderId)}</strong></p>
         <div class="card summary">
-            <div class="row"><span>Item</span><span>${esc(order.item.title)}${opts ? ' (' + esc(opts) + ')' : ''} &times; ${order.item.qty}</span></div>
+            ${itemRows}
             <div class="row"><span>Delivering to</span><span>${esc(a.fullName)}<br>${esc(a.line1)}, ${esc(a.city)}, ${esc(a.state)} ${esc(a.pincode)}</span></div>
             <div class="row"><span>Estimated delivery</span><span>${esc(eta)}</span></div>
             <div class="row"><span>Payment</span><span>${esc(payLabel)}<br><small>${esc(p.status)}</small></span></div>

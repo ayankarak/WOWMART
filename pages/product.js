@@ -1,7 +1,7 @@
 import { PRODUCTS } from './productData.js';
 import { initSiteHeader } from '../header.js';
 import { homeUrl, accountUrl, shopUrl } from '../paths.js';
-import { startBuyNow } from './checkout.js';
+import { startBuyNow } from './checkout/checkout.js';
 import { addToCart } from '../cart.js';
 
 // Shared header (menu, search bars, category links)
@@ -243,7 +243,7 @@ initSiteHeader();
         return;
       }
       showMessage('Redirecting to delivery location...', 'success');
-      // Saves {id, qty, size, color} for the checkout pages and redirects to location.html?id=..&qty=..
+      // Saves the single item for the checkout pages and redirects to checkout/location.html (the cart is left untouched)
       startBuyNow({ id: item.id, qty: item.qty, size: item.size, color: item.color });
     });
   }

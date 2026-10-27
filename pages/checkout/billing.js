@@ -1,15 +1,15 @@
-import { initSiteHeader } from '../header.js';
-import { pagesUrl } from '../paths.js';
-import { requireAddress, computeTotals, formatPrice, esc, renderMiniItem, renderStepper,
+import { initSiteHeader } from '../../header.js';
+import { checkoutUrl } from '../../paths.js';
+import { requireAddress, computeTotals, formatPrice, esc, lineTotal, renderItemList, renderStepper,
          updateCheckout, createModal, placeOrder } from './checkout.js';
 
 initSiteHeader();
 renderStepper(document.getElementById('stepper'), 2);
 
-const line = requireAddress();
-if (line) init(line);
+const ctx = requireAddress();
+if (ctx) init(ctx);
 
-function init({ product, item, address }) {
+function init({ lines, address }) {
     // Delivery address
     document.getElementById('addressBox').innerHTML = `
         <strong>${esc(address.fullName)}</strong><span class="tag">${esc(address.type)}</span><br>
@@ -17,14 +17,15 @@ function init({ product, item, address }) {
         ${esc(address.city)}, ${esc(address.state)} &ndash; ${esc(address.pincode)}<br>
         <i class="fa-solid fa-phone"></i> ${esc(address.phone)}`;
 
-    // Item + itemised bill (price comes from productData.js, never from localStorage)
-    renderMiniItem(document.getElementById('itemRow'), product, item);
-    const t = computeTotals(product, item.qty);
+    // Items + itemised bill (prices come from productData.js, never from localStorage)
+    renderItemList(document.getElementById('itemRow'), lines);
+    document.getElementById('itemCount').textContent = lines.length;
+    const t = computeTotals(lines);
+    const itemRows = lines.map(({ product, item }) =>
+        `<tr><td>${esc(product.title)} <span class="qty">&times; ${item.qty}</span></td><td>${esc(formatPrice(lineTotal(product, item.qty)))}</td></tr>`).join('');
     document.getElementById('billTable').innerHTML = `
-        <tr><td>${esc(product.title)}</td><td></td></tr>
-        <tr><td>Price</td><td>${esc(formatPrice(product.price))}</td></tr>
-        <tr><td>Quantity</td><td>&times; ${item.qty}</td></tr>
-        <tr><td>Subtotal</td><td>${esc(formatPrice(t.subtotal))}</td></tr>
+        ${itemRows}
+        <tr class="sep"><td>Subtotal (${t.units} item${t.units === 1 ? '' : 's'})</td><td>${esc(formatPrice(t.subtotal))}</td></tr>
         <tr><td>Delivery charges</td><td>${t.delivery === 0 ? '<span class="free">FREE</span>' : esc(formatPrice(t.delivery))}</td></tr>
         <tr><td>GST (${t.gstPercent}%)</td><td>${esc(formatPrice(t.tax))}</td></tr>
         <tr class="total"><td>Total Amount</td><td>${esc(formatPrice(t.total))}</td></tr>`;
@@ -49,7 +50,7 @@ function init({ product, item, address }) {
     // UPI / Net Banking -> payment.html?method=...
     const goPay = (method) => {
         updateCheckout({ payment: { method } });
-        window.location.href = pagesUrl(`payment.html?method=${method}`);
+        window.location.href = checkoutUrl(`payment.html?method=${method}`);
     };
     $('upiBtn').addEventListener('click', () => goPay('upi'));
     $('netBankBtn').addEventListener('click', () => goPay('netbanking'));

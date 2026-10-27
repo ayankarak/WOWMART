@@ -20,7 +20,7 @@ import { productUrl } from './paths.js';
 
 const CART_KEY = 'cart';
 export const CART_EVENT = 'wowmart:cart-changed';
-const MAX_PER_LINE = 10;
+export const MAX_PER_LINE = 10;
 
 const has = (obj, k) => Object.prototype.hasOwnProperty.call(obj, k);
 const norm = (v) => (v === undefined || v === null || v === '' ? null : String(v));
@@ -152,7 +152,7 @@ export function initCartButtons() {
 }
 
 // ---------- tiny toast ----------
-function showToast(text, isError = false) {
+export function showToast(text, isError = false) {
     let t = document.getElementById('wm-toast');
     if (!t) {
         const css = document.createElement('style');

@@ -1,17 +1,17 @@
-import { initSiteHeader } from '../header.js';
-import { pagesUrl } from '../paths.js';
-import { requireLineItem, updateCheckout, getCheckout, getSavedAddresses, saveAddress,
-         renderMiniItem, renderStepper, esc } from './checkout.js';
+import { initSiteHeader } from '../../header.js';
+import { checkoutUrl } from '../../paths.js';
+import { requireLines, updateCheckout, getCheckout, getSavedAddresses, saveAddress,
+         renderItemList, renderStepper, backUrlForCheckout, esc } from './checkout.js';
 
 initSiteHeader();
 renderStepper(document.getElementById('stepper'), 1);
 
-const line = requireLineItem();
-if (line) init(line);
+const lines = requireLines();          // every item being bought (whole cart, or the single Buy-Now item)
+if (lines) init(lines);
 
-function init({ product, item }) {
-    renderMiniItem(document.getElementById('miniItem'), product, item);
-    document.getElementById('backLink').href = pagesUrl(`product.html?id=${encodeURIComponent(item.id)}`);
+function init(lines) {
+    renderItemList(document.getElementById('miniItem'), lines);
+    document.getElementById('backLink').href = backUrlForCheckout(lines);   // cart page, or the product page for Buy Now
 
     const form = document.getElementById('addressForm');
     const FIELDS = ['fullName', 'phone', 'line1', 'landmark', 'city', 'state', 'pincode'];
@@ -75,7 +75,7 @@ function init({ product, item }) {
         FIELDS.forEach((n) => { address[n] = form.elements[n].value.trim(); });
 
         saveAddress(address);
-        updateCheckout({ item, address, payment: null });
-        window.location.href = pagesUrl('billing.html');          // -> Bill page
+        updateCheckout({ address, payment: null });               // items were already saved by the cart / product page
+        window.location.href = checkoutUrl('billing.html');       // -> Bill page
     });
 }

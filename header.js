@@ -13,7 +13,7 @@
 // Styles live in header.css (scoped to #site-header).
 // =====================================================================
 import { initSearch } from './search.js';
-import { homeUrl, accountUrl, shopUrl } from './paths.js';
+import { homeUrl, accountUrl, shopUrl, cartUrl } from './paths.js';
 import { initCartBadge } from './cart.js';
 
 const MOBILE_BREAKPOINT = 768; // keep in sync with header.css
@@ -77,7 +77,7 @@ function headerTemplate() {
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <div class="cart-action">
-                <button class="cart-btn" type="button" data-cart-label><i class="fa-solid fa-cart-shopping"></i> My Cart (<span data-cart-count>0</span>)</button>
+                <a class="cart-btn" href="${cartUrl()}" data-cart-label><i class="fa-solid fa-cart-shopping"></i> My Cart (<span data-cart-count>0</span>)</a>
             </div>
             <div class="cart-action">
                 <a href="${account}" class="cart-btn" data-account-link>
@@ -100,7 +100,7 @@ function headerTemplate() {
             <i class="fa fa-user"></i>
             <span data-account-label>Account</span>
         </a>
-        <a href="#cart" class="mobile-action-item">
+        <a href="${cartUrl()}" class="mobile-action-item" data-cart-label>
             <i class="fa fa-shopping-cart"></i>
             <span>Cart (<span data-cart-count>0</span>)</span>
         </a>

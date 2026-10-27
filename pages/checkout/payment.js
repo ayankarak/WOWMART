@@ -1,5 +1,5 @@
-import { initSiteHeader } from '../header.js';
-import { requireAddress, computeTotals, formatPrice, renderMiniItem, renderStepper, placeOrder } from './checkout.js';
+import { initSiteHeader } from '../../header.js';
+import { requireAddress, computeTotals, formatPrice, renderItemList, renderStepper, placeOrder } from './checkout.js';
 
 initSiteHeader();
 renderStepper(document.getElementById('stepper'), 3);
@@ -16,15 +16,15 @@ const BANKS = ['State Bank of India', 'HDFC Bank', 'ICICI Bank', 'Axis Bank', 'K
                'Punjab National Bank', 'Bank of Baroda', 'Canara Bank', 'Union Bank of India', 'IDFC FIRST Bank'];
 const UPI_ID_RE = /^[a-zA-Z0-9._-]{2,}@[a-zA-Z]{2,}$/;
 
-const line = requireAddress();
-if (line) init(line);
+const ctx = requireAddress();
+if (ctx) init(ctx);
 
-function init({ product, item }) {
+function init({ lines }) {
     const method = new URLSearchParams(window.location.search).get('method') === 'netbanking' ? 'netbanking' : 'upi';
-    const t = computeTotals(product, item.qty);
+    const t = computeTotals(lines);
     const $ = (id) => document.getElementById(id);
 
-    renderMiniItem($('miniItem'), product, item);
+    renderItemList($('miniItem'), lines);
     $('amount').textContent = formatPrice(t.total);
     $('payBtn').textContent = `Pay ${formatPrice(t.total)}`;
 
