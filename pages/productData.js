@@ -19,7 +19,7 @@ export const PRODUCTS = {
       reviews: 42, 
       stock: 15, 
       description: 'Comfortable summer floral dress.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_floral_dress.jpg'], 
       colors: [{name:'Pink', hex:'#ffc0cb'}], 
       sizes: ['S','M','L'] 
     },
@@ -32,7 +32,7 @@ export const PRODUCTS = {
       stock: 20, 
       description: 
       'Soft cotton casual top for daily wear.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_casual_top.jpg'], 
       colors: [{name:'White', hex:'#fff'}], 
       sizes: ['S','M','L','XL'] 
     },
@@ -44,7 +44,7 @@ export const PRODUCTS = {
       reviews: 55, 
       stock: 12, 
       description: 'Traditional ethnic kurti with fine prints.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/women_ethnic_kurti.jpg'], 
       colors: [{name:'Blue', hex:'#0000ff'}], 
       sizes: ['M','L','XL'] 
     },
@@ -56,7 +56,7 @@ export const PRODUCTS = {
       reviews: 18, 
       stock: 8, 
       description: 'Elegant evening party gown.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_party_gown.jpg'], 
       colors: [{name:'Black', hex:'#000'}], 
       sizes: ['S','M'] 
     },
@@ -68,7 +68,7 @@ export const PRODUCTS = {
       reviews: 40, 
       stock: 10, 
       description: 'Classic blue denim jacket.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_denim_jacket.jpg'], 
       colors: [{name:'Blue', hex:'#2a52be'}], 
       sizes: ['S','M','L'] },
     'women-7': { 
@@ -79,7 +79,7 @@ export const PRODUCTS = {
       reviews: 60, 
       stock: 14, 
       description: 'Cozy winter oversized hoodie.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_oversized_hoodie.jpg'], 
       colors: [{name:'Grey', hex:'#808080'}], 
       sizes: ['S','M','L','XL'] },
     'women-8': { 
@@ -90,7 +90,7 @@ export const PRODUCTS = {
       reviews: 22, 
       stock: 9, 
       description: 'Professional formal office blazer.', 
-      images: ['../assets/handbags.png'], 
+      images: ['../assets/woman_formal_blazer.jpg'], 
       colors: [{name:'Navy', hex:'#000080'}], 
       sizes: ['M','L'] },
 
@@ -103,7 +103,7 @@ export const PRODUCTS = {
       reviews: 64, 
       stock: 20, 
       description: 'Classic soft cotton shirt.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_cotton_tshirt.jpg'], 
       colors: [{name:'Beige', hex:'#f5f5dc'}], 
       sizes: ['S','M','L','XL'] },
     'men-2': { 
@@ -114,7 +114,7 @@ export const PRODUCTS = {
       reviews: 45, 
       stock: 15, 
       description: 'Stylish zip-up knitwear shirt.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_neck_shirt.jpg'], 
       colors: [{name:'Grey', hex:'#888'}], 
       sizes: ['M','L','XL'] },
     'men-3': { 
@@ -125,7 +125,7 @@ export const PRODUCTS = {
       reviews: 38, 
       stock: 18, 
       description: 'Comfortable long sleeve tee.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/classic_longsleeve.jpg'], 
       colors: [{name:'White', hex:'#fff'}], 
       sizes: ['S','M','L'] },
     'men-4': { 
@@ -136,7 +136,7 @@ export const PRODUCTS = {
       reviews: 82, 
       stock: 25, 
       description: 'Stretchable slim fit denim jeans.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_fit_jeans.jpg'], 
       colors: [{name:'Blue', hex:'#0000ff'}], 
       sizes: ['30','32','34','36'] },
     'men-5': { 
@@ -147,7 +147,7 @@ export const PRODUCTS = {
       reviews: 29, 
       stock: 12, 
       description: 'Formal office wear trousers.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_long_sleave_shirt.jpg'], 
       colors: [{name:'Black', hex:'#000'}], 
       sizes: ['30','32','34'] },
     'men-6': { 
@@ -158,7 +158,7 @@ export const PRODUCTS = {
       reviews: 70, 
       stock: 30, 
       description: 'Breathable cotton polo tee.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_cotton_tshirt.jpg'], 
       colors: [{name:'Navy', hex:'#000080'}], 
       sizes: ['M','L','XL'] 
     },
@@ -170,7 +170,7 @@ export const PRODUCTS = {
       reviews: 50, 
       stock: 10, 
       description: 'Stylish winter bomber jacket.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/men_jacket.jpg'], 
       colors: [{name: 'Olive', hex: '#808000'}], 
       sizes: ['L','XL'] },
     'men-8': { 
@@ -181,7 +181,7 @@ export const PRODUCTS = {
       reviews: 25, 
       stock: 20, 
       description: 'Casual summer cotton shorts.', 
-      images: ['../assets/chair.png'], 
+      images: ['../assets/mencottonshorts.jpg'], 
       colors: [{name: 'Khaki', hex: '#c3b091'}], 
       sizes: ['M','L'] 
     },
