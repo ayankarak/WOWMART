@@ -194,7 +194,7 @@ export const PRODUCTS = {
       reviews: 35, 
       stock: 20, 
       description: 'Soft and breathable cotton t-shirt for kids.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_tshirt.jpg'], 
       colors: [{name:'Red', hex:'#ff0000'}], 
       sizes: ['4-5Y','6-7Y','8-9Y'] },
   'kids-2': { 
@@ -205,7 +205,7 @@ export const PRODUCTS = {
       reviews: 28, 
       stock: 15, 
       description: 'Durable denim shorts for everyday play.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_shorts.jpg'], 
       colors: [{name:'Blue', hex:'#0000ff'}], 
       sizes: ['4-5Y','6-7Y','8-9Y'] },
   'kids-3': { 
@@ -216,7 +216,7 @@ export const PRODUCTS = {
       reviews: 45, 
       stock: 10, 
       description: 'Beautiful party wear frock for little girls.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_frock.jpg'], 
       colors: [{name:'Pink', hex:'#ffc0cb'}], 
       sizes: ['3-4Y','5-6Y','7-8Y'] },
   'kids-4': { 
@@ -227,7 +227,7 @@ export const PRODUCTS = {
       reviews: 32, 
       stock: 12, 
       description: 'Warm and cozy winter hoodie for kids.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_hodie.jpg'], 
       colors: [{name:'Yellow', hex:'#ffff00'}], 
       sizes: ['4-5Y','6-7Y','8-9Y'] },
   'kids-5': { 
@@ -238,7 +238,7 @@ export const PRODUCTS = {
       reviews: 19, 
       stock: 18, 
       description: 'Comfortable sports track pants for kids.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_trackpants.jpg'], 
       colors: [{name:'Black', hex:'#000000'}], 
       sizes: ['4-5Y','6-7Y','8-9Y'] },
   'kids-6': { 
@@ -249,7 +249,7 @@ export const PRODUCTS = {
       reviews: 50, 
       stock: 22, 
       description: 'Soft sleepwear pyjama set for kids.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_payjama.jpg'], 
       colors: [{name:'Blue', hex:'#00ffff'}], 
       sizes: ['3-4Y','5-6Y','7-8Y'] },
   'kids-7': { 
@@ -260,7 +260,7 @@ export const PRODUCTS = {
       reviews: 65, 
       stock: 14, 
       description: 'Lightweight and spacious school backpack.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_bag.jpg'], 
       colors: [{name:'Red', hex:'#ff0000'}], 
       sizes: ['Standard'] },
   'kids-8': { 
@@ -271,7 +271,7 @@ export const PRODUCTS = {
       reviews: 40, 
       stock: 16, 
       description: 'Comfortable walking shoes for active kids.', 
-      images: ['../assets/masks.png'], 
+      images: ['../assets/kids_sneakers.jpg'], 
       colors: [{name:'White', hex:'#ffffff'}], 
       sizes: ['10C','11C','12C','1Y'] },
 
