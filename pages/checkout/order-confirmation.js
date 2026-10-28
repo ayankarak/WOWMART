@@ -27,15 +27,18 @@ if (!order) {
         <div class="tick"><i class="fa-solid fa-check"></i></div>
         <h1>Thank you! Your order is confirmed</h1>
         <p class="order-id">Order ID: <strong>${esc(order.orderId)}</strong></p>
+        <p class="order-id">Tracking ID: <strong>${esc(order.trackingId || order.orderId)}</strong></p>
         <div class="card summary">
             ${itemRows}
             <div class="row"><span>Delivering to</span><span>${esc(a.fullName)}<br>${esc(a.line1)}, ${esc(a.city)}, ${esc(a.state)} ${esc(a.pincode)}</span></div>
             <div class="row"><span>Estimated delivery</span><span>${esc(eta)}</span></div>
+            ${t.discount ? `<div class="row"><span>Coupon ${esc(t.couponCode || '')}</span><span>−${esc(formatPrice(t.discount))}</span></div>` : ''}
             <div class="row"><span>Payment</span><span>${esc(payLabel)}<br><small>${esc(p.status)}</small></span></div>
             <div class="row"><span><strong>${p.method === 'COD' ? 'Amount to pay on delivery' : 'Amount paid'}</strong></span><span><strong>${esc(formatPrice(t.total))}</strong></span></div>
         </div>
         <div class="actions" style="justify-content:center">
             <a class="btn btn-secondary" href="${esc(homeUrl())}">Home</a>
+            <a class="btn btn-secondary" href="order-tracking.html?tracking=${encodeURIComponent(order.trackingId || order.orderId)}">Track order</a>
             <a class="btn btn-primary" href="${esc(shopUrl())}">Continue shopping</a>
         </div>`;
 }

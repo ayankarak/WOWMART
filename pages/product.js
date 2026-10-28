@@ -3,6 +3,7 @@ import { initSiteHeader } from '../header.js';
 import { homeUrl, accountUrl, shopUrl } from '../paths.js';
 import { startBuyNow } from './checkout/checkout.js';
 import { addToCart } from '../cart.js';
+import { toggleWishlist, isWishlisted } from '../wishlist.js';
 
 // Shared header (menu, search bars, category links)
 initSiteHeader();
@@ -59,6 +60,13 @@ initSiteHeader();
   container.innerHTML = buildHTML(product);
   bindEvents(product);
 
+  function initReviews(id) {
+    const key = `wowmartReviews:${id}`; const list = container.querySelector('#reviewsList'); const summary = container.querySelector('#reviewSummary'); const form = container.querySelector('#reviewForm'); if (!form) return;
+    const read = () => { try { const data = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } };
+    const draw = () => { const rows = read(); const average = rows.length ? rows.reduce((n,r)=>n+r.rating,0)/rows.length : 0; summary.innerHTML = `<strong>${average ? average.toFixed(1) : 'No ratings yet'}</strong> <span class="stars">${starsHTML(average)}</span> <span>${rows.length} customer review${rows.length===1?'':'s'}</span>`; list.innerHTML = rows.length ? rows.slice().reverse().map(r=>`<article class="review-item"><div><strong>${esc(r.name)}</strong> <span class="stars">${starsHTML(r.rating)}</span></div><small>${esc(new Date(r.date).toLocaleDateString('en-IN'))}</small><p>${esc(r.text)}</p></article>`).join('') : '<p>Be the first to review this product.</p>'; };
+    form.addEventListener('submit', e => { e.preventDefault(); const name = form.querySelector('#reviewName').value.trim(); const text = form.querySelector('#reviewText').value.trim(); const rating = Number(form.querySelector('#reviewRating').value); if (!name || !text || rating < 1 || rating > 5) return; const rows = read(); rows.push({name,text,rating,date:new Date().toISOString()}); try { localStorage.setItem(key, JSON.stringify(rows.slice(-100))); form.reset(); form.querySelector('#reviewMessage').textContent = 'Thanks! Your review has been saved on this device.'; draw(); } catch { form.querySelector('#reviewMessage').textContent = 'Could not save your review. Please check browser storage.'; } }); draw();
+  }
+
   // Render error view if product is not found
   function renderNotFound(badId) {
     container.classList.add('is-empty');
@@ -113,7 +121,7 @@ initSiteHeader();
       </section>
 
       <section class="product-info-right">
-        <h1>${esc(p.title)}</h1>
+        <div class="product-title-row"><h1>${esc(p.title)}</h1><button type="button" id="productWishlistBtn" class="wishlist-btn${isWishlisted(productId) ? ' is-active' : ''}" aria-label="Toggle wishlist" aria-pressed="${isWishlisted(productId)}"><i class="fa-${isWishlisted(productId) ? 'solid' : 'regular'} fa-heart"></i></button></div>
         <div class="rating-stock">
           <span class="stars">${starsHTML(p.rating)}</span>
           <span class="reviews">(${p.reviews} reviews)</span>
@@ -146,6 +154,10 @@ initSiteHeader();
             <div><strong>Return Delivery</strong><br>Free 30 days delivery returns</div>
           </div>
         </div>
+      </section>
+      <section class="reviews-section" id="reviewsSection">
+        <h2>Customer Reviews & Ratings</h2><div id="reviewSummary" class="review-summary"></div><div id="reviewsList" class="reviews-list"></div>
+        <form id="reviewForm" class="review-form"><h3>Write a review</h3><label for="reviewName">Your name</label><input id="reviewName" maxlength="60" required placeholder="Name"><label for="reviewRating">Rating</label><select id="reviewRating" required><option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Good</option><option value="3">★★★☆☆ — Average</option><option value="2">★★☆☆☆ — Poor</option><option value="1">★☆☆☆☆ — Very poor</option></select><label for="reviewText">Review</label><textarea id="reviewText" maxlength="1000" required rows="4" placeholder="Share your experience"></textarea><button class="add-cart-btn" type="submit">Submit review</button><p id="reviewMessage" role="status"></p></form>
       </section>`;
   }
 
@@ -153,6 +165,9 @@ initSiteHeader();
   function bindEvents(p) {
     const $ = (sel) => container.querySelector(sel);
     const maxQty = Math.max(1, Math.min(p.stock, MAX_QTY));
+    const wishlistBtn = $('#productWishlistBtn');
+    wishlistBtn?.addEventListener('click', () => { const active = toggleWishlist(productId); wishlistBtn.classList.toggle('is-active', active); wishlistBtn.setAttribute('aria-pressed', String(active)); wishlistBtn.innerHTML = `<i class="fa-${active ? 'solid' : 'regular'} fa-heart"></i>`; });
+    initReviews(productId);
     const state = { color: p.colors ? p.colors[0].name : null, size: null, qty: 1 };
 
     // Thumbnail image switcher

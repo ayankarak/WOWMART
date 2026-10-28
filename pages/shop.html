@@ -44,10 +44,15 @@
             <!-- Price Filter -->
             <div class="filter-group">
                 <h4>Price</h4>
-                <div class="price-inputs">
-                    <input type="text" value="29,00 SAR" readonly>
-                    <span>-</span>
-                    <input type="text" value="300,000 SAR" readonly>
+                <div class="price-range-values"><span id="minPriceLabel">₹0</span><span id="maxPriceLabel">₹0</span></div>
+                <input id="priceRange" class="price-range" type="range" min="0" max="50000" step="100" value="50000" aria-label="Maximum price">
+                <label class="filter-caption" for="priceRange">Maximum price</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Color</h4>
+                <div class="color-filter-list" id="colorFilterList">
+                    <label><input type="checkbox" value="Black"> Black</label><label><input type="checkbox" value="White"> White</label><label><input type="checkbox" value="Blue"> Blue</label><label><input type="checkbox" value="Pink"> Pink</label><label><input type="checkbox" value="Red"> Red</label>
                 </div>
             </div>
 
@@ -75,6 +80,7 @@
                         <option value="popular">Popular</option>
                         <option value="low-high">Price: Low to High</option>
                         <option value="high-low">Price: High to Low</option>
+                        <option value="newest">Newest</option>
                     </select>
                 </div>
             </div>

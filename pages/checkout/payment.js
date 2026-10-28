@@ -21,7 +21,10 @@ if (ctx) init(ctx);
 
 function init({ lines }) {
     const method = new URLSearchParams(window.location.search).get('method') === 'netbanking' ? 'netbanking' : 'upi';
-    const t = computeTotals(lines);
+    const baseTotals = computeTotals(lines);
+    let savedCheckout = null; try { savedCheckout = JSON.parse(localStorage.getItem('wowmart_checkout') || 'null'); } catch {}
+    const discount = Math.min(baseTotals.total, Math.max(0, Number(savedCheckout?.coupon?.discount) || 0));
+    const t = { ...baseTotals, total: Math.max(0, baseTotals.total - discount) };
     const $ = (id) => document.getElementById(id);
 
     renderItemList($('miniItem'), lines);

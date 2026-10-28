@@ -15,6 +15,7 @@
 import { initSearch } from './search.js';
 import { homeUrl, accountUrl, shopUrl, cartUrl } from './paths.js';
 import { initCartBadge } from './cart.js';
+import { initTheme } from './theme.js';
 
 const MOBILE_BREAKPOINT = 768; // keep in sync with header.css
 
@@ -76,6 +77,12 @@ function headerTemplate() {
                 <input type="text" id="searchInput" placeholder="${searchPlaceholder}" aria-label="Search products">
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
+            <div class="cart-action">
+                <a class="cart-btn" href="${new URL('pages/wishlist.html', new URL('./', import.meta.url)).href}"><i class="fa-regular fa-heart"></i> Wishlist</a>
+            </div>
+            <div class="cart-action">
+                <button class="theme-toggle" type="button" data-theme-toggle><i class="fa-solid fa-moon"></i> Dark</button>
+            </div>
             <div class="cart-action">
                 <a class="cart-btn" href="${cartUrl()}" data-cart-label><i class="fa-solid fa-cart-shopping"></i> My Cart (<span data-cart-count>0</span>)</a>
             </div>
@@ -271,7 +278,8 @@ export function initSiteHeader() {
     root.dataset.ready = 'true';
 
     initAccountLabel(root);
-    initCartBadge();               // fills the My Cart (X) badge and keeps it live
+    initCartBadge();
+    initTheme();               // fills the My Cart (X) badge and keeps it live
     initActiveCategory(root);
     initNavMenu(root);
     initMobileSearch(root);

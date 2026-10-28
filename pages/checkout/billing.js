@@ -21,17 +21,25 @@ function init({ lines, address }) {
     renderItemList(document.getElementById('itemRow'), lines);
     document.getElementById('itemCount').textContent = lines.length;
     const t = computeTotals(lines);
-    const itemRows = lines.map(({ product, item }) =>
-        `<tr><td>${esc(product.title)} <span class="qty">&times; ${item.qty}</span></td><td>${esc(formatPrice(lineTotal(product, item.qty)))}</td></tr>`).join('');
-    document.getElementById('billTable').innerHTML = `
-        ${itemRows}
-        <tr class="sep"><td>Subtotal (${t.units} item${t.units === 1 ? '' : 's'})</td><td>${esc(formatPrice(t.subtotal))}</td></tr>
-        <tr><td>Delivery charges</td><td>${t.delivery === 0 ? '<span class="free">FREE</span>' : esc(formatPrice(t.delivery))}</td></tr>
-        <tr><td>GST (${t.gstPercent}%)</td><td>${esc(formatPrice(t.tax))}</td></tr>
-        <tr class="total"><td>Total Amount</td><td>${esc(formatPrice(t.total))}</td></tr>`;
+    const couponKey = 'wowmartAppliedCoupon';
+    let appliedCoupon = null;
+    const couponInput = document.getElementById('couponCode');
+    const couponMessage = document.getElementById('couponMessage');
+    try { const saved = JSON.parse(sessionStorage.getItem(couponKey) || 'null'); if (saved && ['WOW50','FIRST10'].includes(saved.code)) appliedCoupon = saved; } catch {}
+    function couponDiscount(subtotal) { if (!appliedCoupon) return 0; return appliedCoupon.code === 'WOW50' ? Math.min(50, subtotal) : Math.round(subtotal * 0.10 * 100) / 100; }
+    function updateBill() {
+      const discount = couponDiscount(t.subtotal); const payable = Math.max(0, t.total - discount);
+      const rows = lines.map(({ product, item }) => `<tr><td>${esc(product.title)} <span class="qty">&times; ${item.qty}</span></td><td>${esc(formatPrice(lineTotal(product, item.qty)))}</td></tr>`).join('');
+      document.getElementById('billTable').innerHTML = `${rows}<tr class="sep"><td>Subtotal (${t.units} item${t.units === 1 ? '' : 's'})</td><td>${esc(formatPrice(t.subtotal))}</td></tr><tr><td>Delivery charges</td><td>${t.delivery === 0 ? '<span class="free">FREE</span>' : esc(formatPrice(t.delivery))}</td></tr><tr><td>GST (${t.gstPercent}%)</td><td>${esc(formatPrice(t.tax))}</td></tr>${discount ? `<tr class="coupon-discount"><td>Coupon (${appliedCoupon.code})</td><td>−${esc(formatPrice(discount))}</td></tr>` : ''}<tr class="total"><td>Total Amount</td><td>${esc(formatPrice(payable))}</td></tr>`;
+      document.querySelectorAll('[data-total]').forEach(el => el.textContent = formatPrice(payable));
+      updateCheckout({ coupon: appliedCoupon ? { ...appliedCoupon, discount } : null, payableTotal: payable });
+    }
+    if (appliedCoupon && couponInput) couponInput.value = appliedCoupon.code;
+    document.getElementById('applyCouponBtn').addEventListener('click', () => { const code = couponInput.value.trim().toUpperCase(); if (code === 'WOW50' || code === 'FIRST10') { appliedCoupon = { code }; sessionStorage.setItem(couponKey, JSON.stringify(appliedCoupon)); couponMessage.textContent = `${code} applied successfully.`; couponMessage.className = 'coupon-success'; } else { appliedCoupon = null; sessionStorage.removeItem(couponKey); couponMessage.textContent = 'Invalid code. Try WOW50 or FIRST10.'; couponMessage.className = 'coupon-error'; } updateBill(); });
+    if (appliedCoupon) { couponMessage.textContent = `${appliedCoupon.code} applied successfully.`; couponMessage.className = 'coupon-success'; }
+    updateBill();
     document.getElementById('billNote').textContent =
         `Free delivery on orders of ${formatPrice(t.freeDeliveryAbove).replace('.00', '')} or more.`;
-    document.querySelectorAll('[data-total]').forEach((el) => { el.textContent = formatPrice(t.total); });
 
     // Modals
     const payModal = createModal(document.getElementById('payModal'));

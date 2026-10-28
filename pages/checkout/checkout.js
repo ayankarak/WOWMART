@@ -173,11 +173,16 @@ export function placeOrder({ method, detail = '' }) {
     if (!ctx) return;
     placing = true;
     const { lines, address, mode } = ctx;
-    const totals = computeTotals(lines);
+    const baseTotals = computeTotals(lines);
+    const checkoutState = getCheckout() || {};
+    const discount = Math.min(baseTotals.total, Math.max(0, Number(checkoutState.coupon?.discount) || 0));
+    const totals = { ...baseTotals, discount, couponCode: checkoutState.coupon?.code || null, total: Math.max(0, baseTotals.total - discount) };
 
     const orderId = 'WM' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
     const order = {
         orderId,
+        trackingId: 'TRK' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(),
+        trackingStatus: 'Packed',
         placedAt: new Date().toISOString(),
         mode,
         items: lines.map(({ product, item }) => ({
@@ -192,6 +197,7 @@ export function placeOrder({ method, detail = '' }) {
 
     if (mode === 'cart') clearCart();                      // empties localStorage['cart'] + refreshes the header badge
     clearCheckout();
+    try { sessionStorage.removeItem('wowmartAppliedCoupon'); } catch {}
     window.location.href = checkoutUrl(`order-confirmation.html?order=${encodeURIComponent(orderId)}`);
 }
 

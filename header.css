@@ -310,3 +310,13 @@
     #site-header .logo-text { font-size: 20px; }
     #site-header .logo-icon { font-size: 24px; }
 }
+
+/* Persistent theme toggle and cross-page theme tokens */
+.theme-toggle{border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.12);color:#fff;border-radius:6px;padding:10px 12px;cursor:pointer;font-weight:600;white-space:nowrap}
+:root[data-theme="dark"] body{background:#111827!important;color:#e5e7eb!important}
+:root[data-theme="dark"] .product-card,:root[data-theme="dark"] .card,:root[data-theme="dark"] .sidebar-filter,:root[data-theme="dark"] .filter-group,:root[data-theme="dark"] .reviews-section,:root[data-theme="dark"] .review-item,:root[data-theme="dark"] .review-form{background:#1f2937!important;color:#e5e7eb!important;border-color:#374151!important}
+:root[data-theme="dark"] h1,:root[data-theme="dark"] h2,:root[data-theme="dark"] h3,:root[data-theme="dark"] h4,:root[data-theme="dark"] p,:root[data-theme="dark"] label,:root[data-theme="dark"] .product-card h4,:root[data-theme="dark"] .price{color:inherit}
+:root[data-theme="dark"] input,:root[data-theme="dark"] select,:root[data-theme="dark"] textarea{background:#111827!important;color:#f9fafb!important;border-color:#4b5563!important}
+:root[data-theme="dark"] .bill-table td,:root[data-theme="dark"] .stepper li,:root[data-theme="dark"] .modal,:root[data-theme="dark"] .pay-option{background:#1f2937!important;color:#e5e7eb!important;border-color:#374151!important}
+:root[data-theme="dark"] .product-img-box,:root[data-theme="dark"] .shop-card-image{background:#111827}
+:root[data-theme="dark"] .deal-card,:root[data-theme="dark"] .promo-card,:root[data-theme="dark"] .saved-addr,:root[data-theme="dark"] .bill-item,:root[data-theme="dark"] .wishlist-empty{background:#1f2937!important;color:#e5e7eb!important;border-color:#374151!important}
