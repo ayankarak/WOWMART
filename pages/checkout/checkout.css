@@ -715,3 +715,186 @@ footer {
         grid-column: 2;
     }
 }
+
+/* ---------- Promo codes ---------- */
+.coupon-box {
+    margin: 0 0 16px;
+    padding: 14px;
+    background: #f7fafc;
+    border: 1px dashed #b8c8d3;
+    border-radius: 10px;
+}
+
+.coupon-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #344451;
+}
+
+.coupon-entry {
+    display: flex;
+    gap: 8px;
+}
+
+.coupon-entry input {
+    flex: 1;
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid #cbd5dd;
+    border-radius: 7px;
+    text-transform: uppercase;
+    font: inherit;
+}
+
+.coupon-entry input:focus {
+    outline: 2px solid #a7dced;
+    border-color: #1b7ea0;
+}
+
+.coupon-entry .btn {
+    flex: none;
+}
+
+#couponMessage {
+    min-height: 18px;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+#couponMessage.coupon-success {
+    color: #23783a;
+}
+
+#couponMessage.coupon-error {
+    color: #b42318;
+}
+
+.bill-table .coupon-discount td {
+    color: #23783a;
+}
+
+/* ---------- Order tracking timeline ---------- */
+.tracking-card {
+    max-width: 850px;
+    margin: 36px auto 52px;
+}
+
+.tracking-card h1 {
+    font-size: 28px;
+}
+
+.tracking-form {
+    margin: 18px 0 24px;
+}
+
+.tracking-form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tracking-form>div {
+    display: flex;
+    gap: 10px;
+}
+
+.tracking-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #cbd5dd;
+    border-radius: 8px;
+    font: inherit;
+}
+
+.tracking-result {
+    margin-top: 20px;
+}
+
+.tracking-error {
+    padding: 12px;
+    border-radius: 8px;
+    color: #a52222;
+    background: #fff0f0;
+}
+
+.tracking-steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin: 24px 0;
+    padding: 0;
+}
+
+.tracking-steps li {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    padding: 16px 8px;
+    border: 1px solid #e0e6eb;
+    border-radius: 10px;
+    color: #87919b;
+    background: #fafbfc;
+}
+
+.tracking-steps li.done,
+.tracking-steps li.current {
+    color: #176b3a;
+    border-color: #9bd2ad;
+    background: #f0fbf3;
+}
+
+.tracking-steps li.current {
+    box-shadow: 0 0 0 2px #c4ebce;
+}
+
+.tracking-dot {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e3e8ed;
+    color: #66717b;
+    font-weight: 800;
+}
+
+.tracking-steps li.done .tracking-dot,
+.tracking-steps li.current .tracking-dot {
+    background: #248746;
+    color: white;
+}
+
+.tracking-steps small {
+    font-size: 12px;
+}
+
+.tracking-note {
+    color: #697681;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+@media(max-width:600px) {
+    .tracking-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tracking-form>div {
+        flex-direction: column;
+    }
+
+    .coupon-entry {
+        flex-wrap: wrap;
+    }
+
+    .coupon-entry .btn {
+        flex: 1;
+    }
+}
