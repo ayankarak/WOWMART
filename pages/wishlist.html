@@ -1,28 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Wishlist - WOWMART</title>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - WOWMART</title>
+    <script src="../theme-init.js"></script>
+    <!-- checkout.css gives the shared page base (body, cards, buttons, footer); wishlist.css the hearts + .wl-* rows -->
+    <link rel="stylesheet" href="checkout/checkout.css">
+    <link rel="stylesheet" href="../wishlist.css">
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../search.css">
-    <link rel="stylesheet" href="shop.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../dark.css">
 </head>
 <body>
+    <!-- Shared header is rendered by ../header.js -->
     <div id="site-header"></div>
-    
-    <main class="container wishlist-page">
-        <h1>My Wishlist</h1>
-        <p class="wishlist-intro">Your saved favourites, all in one place.</p>
-        <div class="shop-grid" id="wishlistGrid"></div>
+
+    <main class="wl-page">
+        <div class="wl-title">
+            <h1><i class="fa-solid fa-heart"></i> My Wishlist <span class="count-pill" id="wlCount"></span></h1>
+            <button type="button" class="wl-clear" id="wlClear" hidden>Clear wishlist</button>
+        </div>
+        <div id="wlRoot"><p style="color:#6a757f;text-align:center;padding:40px 0">Loading your wishlist&hellip;</p></div>
     </main>
 
-    <footer class="footer-bottom">
-        &copy; 2026 WOWMART. All rights reserved.
-    </footer>
+    <footer>&copy; 2026 WOWMART. All rights reserved.</footer>
 
-    <script type="module" src="wishlist-page.js"></script>
+    <script type="module" src="wishlist.js"></script>
 </body>
 </html>

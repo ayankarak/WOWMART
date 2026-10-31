@@ -715,186 +715,78 @@ footer {
         grid-column: 2;
     }
 }
+/* =====================================================================
+   Coupons (billing), order tracking (confirmation + tracking page)
+   ===================================================================== */
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); border: 0; white-space: nowrap; }
 
-/* ---------- Promo codes ---------- */
-.coupon-box {
-    margin: 0 0 16px;
-    padding: 14px;
-    background: #f7fafc;
-    border: 1px dashed #b8c8d3;
-    border-radius: 10px;
-}
+/* Coupon box */
+.coupon-box { background: #f7fafb; border: 1px dashed #67bed9; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.coupon-box[hidden], .coupon-box form[hidden], .coupon-list[hidden], .coupon-applied[hidden] { display: none; }
+.coupon-box label { display: block; font-size: 13px; font-weight: 700; color: #4a5560; margin-bottom: 8px; }
+.coupon-box label i { color: #1b7ea0; margin-right: 4px; }
+.coupon-row { display: flex; gap: 8px; }
+.coupon-row input { flex: 1; min-width: 0; padding: 10px 12px; border: 1px solid #c9d0d6; border-radius: 8px; font-size: 15px; text-transform: uppercase; letter-spacing: .5px; background: #fff; color: #333; }
+.coupon-row input::placeholder { text-transform: none; letter-spacing: 0; }
+.coupon-row .btn { padding: 10px 16px; font-size: 14px; }
+.coupon-applied { display: flex; justify-content: space-between; align-items: center; gap: 10px; background: #e8f5e9; color: #1b5e20; border-radius: 8px; padding: 10px 12px; font-size: 14px; }
+.coupon-msg { font-size: 13px; min-height: 0; margin-top: 8px; }
+.coupon-msg:empty { display: none; }
+.coupon-msg.error { color: #c62828; } .coupon-msg.ok { color: #2e7d32; font-weight: 600; }
+.coupon-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+.coupon-chip { text-align: left; background: #fff; border: 1px solid #dfe5ea; border-radius: 8px; padding: 8px 12px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+.coupon-chip:hover { border-color: #1b7ea0; background: #f2fafc; }
+.coupon-chip strong { color: #12647f; letter-spacing: .5px; }
+.coupon-chip small { color: #6a757f; font-size: 12px; }
+.bill-table .discount td { color: #2e7d32; font-weight: 600; }
+.confirm .row .saved { color: #2e7d32; font-weight: 600; }
 
-.coupon-box label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #344451;
-}
+/* Tracker: 4 steps with connectors (horizontal on desktop, vertical on phones) */
+.tracker { list-style: none; display: flex; margin: 22px 0 8px; padding: 0; counter-reset: t; }
+.tracker li { flex: 1; position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; color: #8a949e; }
+.tracker li::before { content: ''; position: absolute; top: 19px; right: 50%; width: 100%; height: 4px; background: #e3e7eb; z-index: 0; }
+.tracker li:first-child::before { display: none; }
+.tracker li.done::before, .tracker li.current::before { background: #2e7d32; }
+.trk-dot { position: relative; z-index: 1; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #e3e7eb; color: #8a949e; font-size: 16px; border: 3px solid #fff; }
+.tracker li.done .trk-dot { background: #2e7d32; color: #fff; }
+.tracker li.current .trk-dot { background: #1b7ea0; color: #fff; animation: trk-pulse 1.8s infinite; }
+@keyframes trk-pulse { 0% { box-shadow: 0 0 0 0 rgba(27,126,160,.5); } 70% { box-shadow: 0 0 0 12px rgba(27,126,160,0); } 100% { box-shadow: 0 0 0 0 rgba(27,126,160,0); } }
+.trk-label { font-size: 14px; font-weight: 700; color: #4a5560; }
+.tracker li.done .trk-label, .tracker li.current .trk-label { color: #1c2b36; }
+.trk-time { font-size: 12px; color: #8a949e; min-height: 16px; }
+@media (prefers-reduced-motion: reduce) { .tracker li.current .trk-dot { animation: none; } }
 
-.coupon-entry {
-    display: flex;
-    gap: 8px;
-}
+.track-card { text-align: center; margin-top: 20px; }
+.confirm .track-card { margin-top: 20px; }
+.track-id { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
+.track-id small, .track-head small { display: block; color: #6a757f; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.track-id strong { font-size: 20px; letter-spacing: 1px; color: #12647f; user-select: all; }
+.track-now { margin: 10px 0 18px; color: #4a5560; font-size: 15px; }
+.track-page { padding-top: 24px; padding-bottom: 20px; }
+.track-form { display: flex; gap: 10px; margin-top: 8px; }
+.track-form input { flex: 1; min-width: 0; padding: 12px 14px; border: 1px solid #c9d0d6; border-radius: 8px; font-size: 16px; text-transform: uppercase; background: #fff; color: #333; }
+.track-form input::placeholder { text-transform: none; }
+.error-line { color: #c62828; font-size: 14px; margin-top: 10px; min-height: 0; }
+.error-line:empty { display: none; }
+.track-head { display: flex; justify-content: space-around; gap: 16px; flex-wrap: wrap; text-align: center; margin-bottom: 14px; }
+.track-head strong { font-size: 16px; color: #1c2b36; }
+.track-status { background: #eaf7fb; color: #12647f; border-radius: 8px; padding: 10px 14px; font-size: 15px; }
+.track-status.done { background: #e8f5e9; color: #1b5e20; }
+.demo-box { margin-top: 18px; padding-top: 16px; border-top: 1px dashed #dfe5ea; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.demo-box small { color: #8a949e; font-size: 12px; }
+.order-list { list-style: none; }
+.order-list li + li { border-top: 1px solid #eef1f3; }
+.order-list a { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; text-decoration: none; color: #1c2b36; }
+.order-list a:hover strong { color: #1b7ea0; }
+.order-list small { display: block; color: #6a757f; font-size: 12px; margin-top: 2px; }
+.pill { background: #eaf7fb; color: #12647f; border-radius: 999px; padding: 3px 12px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.pill.done { background: #e8f5e9; color: #1b5e20; }
 
-.coupon-entry input {
-    flex: 1;
-    min-width: 0;
-    padding: 11px 12px;
-    border: 1px solid #cbd5dd;
-    border-radius: 7px;
-    text-transform: uppercase;
-    font: inherit;
-}
-
-.coupon-entry input:focus {
-    outline: 2px solid #a7dced;
-    border-color: #1b7ea0;
-}
-
-.coupon-entry .btn {
-    flex: none;
-}
-
-#couponMessage {
-    min-height: 18px;
-    margin-top: 8px;
-    font-size: 13px;
-}
-
-#couponMessage.coupon-success {
-    color: #23783a;
-}
-
-#couponMessage.coupon-error {
-    color: #b42318;
-}
-
-.bill-table .coupon-discount td {
-    color: #23783a;
-}
-
-/* ---------- Order tracking timeline ---------- */
-.tracking-card {
-    max-width: 850px;
-    margin: 36px auto 52px;
-}
-
-.tracking-card h1 {
-    font-size: 28px;
-}
-
-.tracking-form {
-    margin: 18px 0 24px;
-}
-
-.tracking-form label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 8px;
-}
-
-.tracking-form>div {
-    display: flex;
-    gap: 10px;
-}
-
-.tracking-form input {
-    flex: 1;
-    min-width: 0;
-    padding: 12px;
-    border: 1px solid #cbd5dd;
-    border-radius: 8px;
-    font: inherit;
-}
-
-.tracking-result {
-    margin-top: 20px;
-}
-
-.tracking-error {
-    padding: 12px;
-    border-radius: 8px;
-    color: #a52222;
-    background: #fff0f0;
-}
-
-.tracking-steps {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin: 24px 0;
-    padding: 0;
-}
-
-.tracking-steps li {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    text-align: center;
-    padding: 16px 8px;
-    border: 1px solid #e0e6eb;
-    border-radius: 10px;
-    color: #87919b;
-    background: #fafbfc;
-}
-
-.tracking-steps li.done,
-.tracking-steps li.current {
-    color: #176b3a;
-    border-color: #9bd2ad;
-    background: #f0fbf3;
-}
-
-.tracking-steps li.current {
-    box-shadow: 0 0 0 2px #c4ebce;
-}
-
-.tracking-dot {
-    width: 34px;
-    height: 34px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: #e3e8ed;
-    color: #66717b;
-    font-weight: 800;
-}
-
-.tracking-steps li.done .tracking-dot,
-.tracking-steps li.current .tracking-dot {
-    background: #248746;
-    color: white;
-}
-
-.tracking-steps small {
-    font-size: 12px;
-}
-
-.tracking-note {
-    color: #697681;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-@media(max-width:600px) {
-    .tracking-steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .tracking-form>div {
-        flex-direction: column;
-    }
-
-    .coupon-entry {
-        flex-wrap: wrap;
-    }
-
-    .coupon-entry .btn {
-        flex: 1;
-    }
+@media (max-width: 640px) {
+    .tracker { flex-direction: column; gap: 0; margin-left: 8px; }
+    .tracker li { flex-direction: row; text-align: left; gap: 14px; padding-bottom: 18px; align-items: center; }
+    .tracker li::before { top: -22px; right: auto; left: 20px; width: 4px; height: 100%; }
+    .tracker li:first-child::before { display: none; }
+    .trk-time { margin-left: auto; }
+    .track-form { flex-direction: column; }
 }

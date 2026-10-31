@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../theme-init.js"></script>
     <title>Bill Summary - WOWMART</title>
     <link rel="stylesheet" href="checkout.css">
     <link rel="stylesheet" href="../../header.css">
     <link rel="stylesheet" href="../../search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../dark.css">
 </head>
 <body>
     <!-- Shared header is rendered by ../../header.js -->
@@ -30,7 +32,21 @@
             </div>
             <aside class="card" aria-label="Bill details">
                 <h2><i class="fa-solid fa-receipt"></i> Bill details</h2>
-                <div class="coupon-box"><label for="couponCode">Promo code</label><div class="coupon-entry"><input id="couponCode" type="text" autocomplete="off" placeholder="Enter WOW50 or FIRST10"><button type="button" class="btn btn-secondary" id="applyCouponBtn">Apply</button></div><p id="couponMessage" role="status"></p></div>
+
+                <!-- Coupon box (billing.js + coupons.js) -->
+                <div class="coupon-box">
+                    <form id="couponForm" novalidate>
+                        <label for="couponInput"><i class="fa-solid fa-ticket"></i> Have a coupon?</label>
+                        <div class="coupon-row">
+                            <input id="couponInput" name="coupon" placeholder="Enter code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="20">
+                            <button type="submit" class="btn btn-secondary" id="couponApply">Apply</button>
+                        </div>
+                    </form>
+                    <div class="coupon-applied" id="couponApplied" hidden></div>
+                    <p class="coupon-msg" id="couponMsg" role="status" aria-live="polite"></p>
+                    <div class="coupon-list" id="couponList" aria-label="Available coupons"></div>
+                </div>
+
                 <table class="bill-table" id="billTable"></table>
                 <p class="note" id="billNote"></p>
                 <button type="button" class="btn btn-primary btn-block" id="orderNowBtn" style="margin-top:18px">Order Now</button>

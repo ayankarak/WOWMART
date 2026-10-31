@@ -13,9 +13,10 @@
 // Styles live in header.css (scoped to #site-header).
 // =====================================================================
 import { initSearch } from './search.js';
-import { homeUrl, accountUrl, shopUrl, cartUrl } from './paths.js';
+import { homeUrl, accountUrl, shopUrl, cartUrl, wishlistUrl, trackingUrl } from './paths.js';
 import { initCartBadge } from './cart.js';
-import { initTheme } from './theme.js';
+import { initWishlistBadge } from './wishlist.js';
+import { getTheme, toggleTheme, THEME_EVENT } from './theme.js';
 
 const MOBILE_BREAKPOINT = 768; // keep in sync with header.css
 
@@ -59,7 +60,9 @@ function headerTemplate() {
                 <a href="#">Wholesale</a>
                 <a href="#">Blog</a>
                 <a href="#">Community</a>
+                <a href="${trackingUrl()}">Track Order</a>
                 <a href="${account}">My Account</a>
+                <button type="button" class="theme-toggle" data-theme-toggle></button>
             </div>
         </div>
     </div>
@@ -78,13 +81,10 @@ function headerTemplate() {
                 <button type="submit" class="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             <div class="cart-action">
-                <a class="cart-btn" href="${new URL('pages/wishlist.html', new URL('./', import.meta.url)).href}"><i class="fa-regular fa-heart"></i> Wishlist</a>
-            </div>
-            <div class="cart-action">
-                <button class="theme-toggle" type="button" data-theme-toggle><i class="fa-solid fa-moon"></i> Dark</button>
-            </div>
-            <div class="cart-action">
                 <a class="cart-btn" href="${cartUrl()}" data-cart-label><i class="fa-solid fa-cart-shopping"></i> My Cart (<span data-cart-count>0</span>)</a>
+            </div>
+            <div class="cart-action">
+                <a class="cart-btn" href="${wishlistUrl()}" data-wishlist-label><i class="fa-solid fa-heart"></i> Wishlist (<span data-wishlist-count>0</span>)</a>
             </div>
             <div class="cart-action">
                 <a href="${account}" class="cart-btn" data-account-link>
@@ -107,10 +107,15 @@ function headerTemplate() {
             <i class="fa fa-user"></i>
             <span data-account-label>Account</span>
         </a>
+        <a href="${wishlistUrl()}" class="mobile-action-item" data-wishlist-label>
+            <i class="fa fa-heart"></i>
+            <span>Wishlist (<span data-wishlist-count>0</span>)</span>
+        </a>
         <a href="${cartUrl()}" class="mobile-action-item" data-cart-label>
             <i class="fa fa-shopping-cart"></i>
             <span>Cart (<span data-cart-count>0</span>)</span>
         </a>
+        <button type="button" class="mobile-action-item theme-toggle-mobile" data-theme-toggle></button>
     </div>
 
     <div class="mobile-search-panel" id="mobileSearchPanel" aria-hidden="true">
@@ -140,6 +145,25 @@ function initAccountLabel(root) {
     try { user = localStorage.getItem('loggedInUser'); } catch { /* storage unavailable */ }
     if (!user) return;
     root.querySelectorAll('[data-account-label]').forEach((el) => { el.textContent = user; });
+}
+
+/** Light / dark toggle: every [data-theme-toggle] button (top bar + mobile bar) shows the theme you would switch TO. */
+function initThemeToggle(root) {
+    const buttons = root.querySelectorAll('[data-theme-toggle]');
+    const paint = () => {
+        const dark = getTheme() === 'dark';
+        buttons.forEach((b) => {
+            b.innerHTML = dark
+                ? '<i class="fa-solid fa-sun" aria-hidden="true"></i><span>Light</span>'
+                : '<i class="fa-solid fa-moon" aria-hidden="true"></i><span>Dark</span>';
+            b.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+            b.setAttribute('aria-pressed', String(dark));
+            b.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+        });
+    };
+    buttons.forEach((b) => b.addEventListener('click', () => toggleTheme()));
+    window.addEventListener(THEME_EVENT, paint);      // also fires when another tab changes the theme
+    paint();
 }
 
 /** Highlight the nav link matching ?category=... in the URL (e.g. shop.html?category=Kids). */
@@ -278,8 +302,9 @@ export function initSiteHeader() {
     root.dataset.ready = 'true';
 
     initAccountLabel(root);
-    initCartBadge();
-    initTheme();               // fills the My Cart (X) badge and keeps it live
+    initCartBadge();               // fills the My Cart (X) badge and keeps it live
+    initWishlistBadge();           // Wishlist (X) badge + every heart button on the page
+    initThemeToggle(root);         // dark / light switch
     initActiveCategory(root);
     initNavMenu(root);
     initMobileSearch(root);

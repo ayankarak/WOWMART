@@ -1,5 +1,5 @@
 import { initSiteHeader } from '../../header.js';
-import { requireAddress, computeTotals, formatPrice, renderItemList, renderStepper, placeOrder } from './checkout.js';
+import { requireAddress, getTotals, formatPrice, renderItemList, renderStepper, placeOrder } from './checkout.js';
 
 initSiteHeader();
 renderStepper(document.getElementById('stepper'), 3);
@@ -21,10 +21,7 @@ if (ctx) init(ctx);
 
 function init({ lines }) {
     const method = new URLSearchParams(window.location.search).get('method') === 'netbanking' ? 'netbanking' : 'upi';
-    const baseTotals = computeTotals(lines);
-    let savedCheckout = null; try { savedCheckout = JSON.parse(localStorage.getItem('wowmart_checkout') || 'null'); } catch {}
-    const discount = Math.min(baseTotals.total, Math.max(0, Number(savedCheckout?.coupon?.discount) || 0));
-    const t = { ...baseTotals, total: Math.max(0, baseTotals.total - discount) };
+    const t = getTotals(lines);                       // includes any coupon applied on the billing page
     const $ = (id) => document.getElementById(id);
 
     renderItemList($('miniItem'), lines);

@@ -24,6 +24,9 @@ export const checkoutUrl = (path = '') => new URL(path, CHECKOUT).href;
 
 export const homeUrl = () => rootUrl('index.html');
 export const cartUrl = () => pagesUrl('cart.html');
+export const wishlistUrl = () => pagesUrl('wishlist.html');
+/** Order tracking page; pass a tracking ID (or order ID) to open it straight on that order. */
+export const trackingUrl = (id) => checkoutUrl(id ? `tracking.html?id=${encodeURIComponent(id)}` : 'tracking.html');
 
 /**
  * Account page. `redirect` is where auth.js sends the user after signing in;

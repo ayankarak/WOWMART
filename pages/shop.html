@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - WOWMART</title>
+    <script src="../theme-init.js"></script>
     <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="../wishlist.css">
     <link rel="stylesheet" href="../header.css">
     <link rel="stylesheet" href="../search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../dark.css">
 </head>
 <body>
     <!-- Shared header is rendered by ../header.js -->
@@ -20,70 +23,28 @@
 
     <!-- Main Shop Section -->
     <main class="container shop-main">
-        <!-- Sidebar Filter -->
-        <aside class="sidebar-filter">
+        <!-- Sidebar filters: built by shop.js from the products on this page (price range, brands, sizes, colours) -->
+        <aside class="sidebar-filter" id="filterPanel" aria-label="Product filters">
             <div class="filter-header">
-                <h3>Filter</h3>
-                <span class="advanced-filter">Advanced</span>
+                <h3>Filters</h3>
+                <button type="button" class="advanced-filter" id="clearFilters" hidden>Clear all</button>
             </div>
-
-            <!-- Brand Filter -->
-            <div class="filter-group">
-                <h4>Brand</h4>
-                <div class="search-brand">
-                    <input type="text" placeholder="Search brand...">
-                </div>
-                <ul class="brand-list" id="brandFilterList">
-                    <li><label><input type="checkbox" value="Nike"> Nike <span>123</span></label></li>
-                    <li><label><input type="checkbox" value="Adidas"> Adidas <span>55</span></label></li>
-                    <li><label><input type="checkbox" value="Apple"> Apple <span>65</span></label></li>
-                    <li><label><input type="checkbox" value="Uniqlo"> Uniqlo <span>61</span></label></li>
-                </ul>
-            </div>
-
-            <!-- Price Filter -->
-            <div class="filter-group">
-                <h4>Price</h4>
-                <div class="price-range-values"><span id="minPriceLabel">₹0</span><span id="maxPriceLabel">₹0</span></div>
-                <input id="priceRange" class="price-range" type="range" min="0" max="50000" step="100" value="50000" aria-label="Maximum price">
-                <label class="filter-caption" for="priceRange">Maximum price</label>
-            </div>
-
-            <div class="filter-group">
-                <h4>Color</h4>
-                <div class="color-filter-list" id="colorFilterList">
-                    <label><input type="checkbox" value="Black"> Black</label><label><input type="checkbox" value="White"> White</label><label><input type="checkbox" value="Blue"> Blue</label><label><input type="checkbox" value="Pink"> Pink</label><label><input type="checkbox" value="Red"> Red</label>
-                </div>
-            </div>
-
-            <!-- Size Filter -->
-            <div class="filter-group">
-                <h4>Size</h4>
-                <div class="size-grid">
-                    <button type="button" class="size-pill">XXS</button>
-                    <button type="button" class="size-pill">XS</button>
-                    <button type="button" class="size-pill">S</button>
-                    <button type="button" class="size-pill">M</button>
-                    <button type="button" class="size-pill">L</button>
-                    <button type="button" class="size-pill">XL</button>
-                </div>
-            </div>
+            <div id="filterBody"></div>
         </aside>
 
         <!-- Product Listing Area -->
         <section class="product-listing-area">
             <div class="listing-header">
                 <h2 id="resultCount">Loading results...</h2>
-                <div class="sort-box">
-                    <label for="sortSelect">Sort by:</label>
-                    <select id="sortSelect">
-                        <option value="popular">Popular</option>
-                        <option value="low-high">Price: Low to High</option>
-                        <option value="high-low">Price: High to Low</option>
-                        <option value="newest">Newest</option>
-                    </select>
+                <div class="listing-tools">
+                    <button type="button" class="filter-toggle" id="filterToggle" aria-expanded="false" aria-controls="filterPanel"><i class="fa-solid fa-sliders"></i> Filters <span class="filter-badge" id="filterBadge" hidden></span></button>
+                    <div class="sort-box">
+                        <label for="sortSelect">Sort by:</label>
+                        <select id="sortSelect"></select>
+                    </div>
                 </div>
             </div>
+            <div class="active-chips" id="activeChips" aria-live="polite"></div>
 
             <!-- Products Grid -->
             <div class="shop-grid" id="shopGrid">

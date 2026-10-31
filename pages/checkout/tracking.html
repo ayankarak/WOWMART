@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - WOWMART</title>
+    <script src="../../theme-init.js"></script>
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="stylesheet" href="../../header.css">
+    <link rel="stylesheet" href="../../search.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../dark.css">
+</head>
+<body>
+    <!-- Shared header is rendered by ../../header.js -->
+    <div id="site-header"></div>
+
+    <main class="container track-page">
+        <section class="card">
+            <h1><i class="fa-solid fa-location-crosshairs"></i> Track your order</h1>
+            <form id="trackForm" class="track-form" novalidate>
+                <label for="trackInput" class="sr-only">Tracking ID or order ID</label>
+                <input id="trackInput" placeholder="Enter Tracking ID (e.g. WMT1234567890)" autocomplete="off" autocapitalize="characters" spellcheck="false">
+                <button type="submit" class="btn btn-primary">Track</button>
+            </form>
+            <p class="error-line" id="trackError" role="alert"></p>
+        </section>
+
+        <div id="trackResult"></div>
+    </main>
+
+    <footer>&copy; 2026 WOWMART. All rights reserved.</footer>
+
+    <script type="module" src="tracking.js"></script>
+</body>
+</html>
