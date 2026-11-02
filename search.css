@@ -7,7 +7,8 @@
 .search-suggest {
     position: absolute;
     top: calc(100% + 4px);
-    left: -2px; right: -2px;
+    left: -2px;
+    right: -2px;
     z-index: 1000;
     background: #fff;
     color: #333;
@@ -18,7 +19,10 @@
     overflow-y: auto;
     text-align: left;
 }
-.search-suggest[hidden] { display: none; }
+
+.search-suggest[hidden] {
+    display: none;
+}
 
 .suggest-row {
     display: flex;
@@ -30,30 +34,110 @@
     cursor: pointer;
     border-bottom: 1px solid #f1f1f1;
 }
-.suggest-row:hover, .suggest-row.active { background: #eef5fc; }
-.suggest-row img {
-    width: 44px; height: 44px; object-fit: contain; flex-shrink: 0;
-    background: #f7f7f7; border-radius: 4px;
-}
-.suggest-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.suggest-title { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.suggest-meta  { font-size: 12px; color: #777; }
-.suggest-price { font-size: 13px; font-weight: 700; color: #0056b3; white-space: nowrap; }
-.suggest-title mark { background: #fff0a8; color: inherit; border-radius: 2px; padding: 0 1px; }
 
-.suggest-all, .suggest-recent { font-size: 14px; color: #0056b3; }
-.suggest-all i, .suggest-recent i { width: 18px; text-align: center; color: #888; }
-.suggest-recent { color: #333; }
-.suggest-all { font-weight: 600; border-bottom: none; }
+.suggest-row:hover,
+.suggest-row.active {
+    background: #eef5fc;
+}
+
+.suggest-row img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: #f7f7f7;
+    border-radius: 4px;
+}
+
+.suggest-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.suggest-title {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggest-meta {
+    font-size: 12px;
+    color: #777;
+}
+
+.suggest-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0056b3;
+    white-space: nowrap;
+}
+
+.suggest-title mark {
+    background: #fff0a8;
+    color: inherit;
+    border-radius: 2px;
+    padding: 0 1px;
+}
+
+.suggest-all,
+.suggest-recent {
+    font-size: 14px;
+    color: #0056b3;
+}
+
+.suggest-all i,
+.suggest-recent i {
+    width: 18px;
+    text-align: center;
+    color: #888;
+}
+
+.suggest-recent {
+    color: #333;
+}
+
+.suggest-all {
+    font-weight: 600;
+    border-bottom: none;
+}
 
 .suggest-head {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 8px 14px 4px; font-size: 12px; color: #777; text-transform: uppercase; letter-spacing: .04em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px 4px;
+    font-size: 12px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: .04em;
 }
-.suggest-clear { background: none; border: none; color: #0056b3; cursor: pointer; font-size: 12px; }
-.suggest-clear:hover { text-decoration: underline; }
-.suggest-empty { padding: 18px 14px; font-size: 14px; color: #555; text-align: center; }
-.suggest-empty small { color: #888; }
+
+.suggest-clear {
+    background: none;
+    border: none;
+    color: #0056b3;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.suggest-clear:hover {
+    text-decoration: underline;
+}
+
+.suggest-empty {
+    padding: 18px 14px;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+}
+
+.suggest-empty small {
+    color: #888;
+}
 
 /* Mobile panel: the dropdown sits in the panel, under the input
    (panel open/grow rules are in header.css) */

@@ -38,9 +38,6 @@ const escapeHtml = (s) => String(s).replace(/[&<>"']/g, (c) => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
 ));
 
-// ---------------------------------------------------------------------
-// Markup
-// ---------------------------------------------------------------------
 function headerTemplate() {
     const account = accountUrl();
     const searchPlaceholder = 'Search for products, brands and more';
